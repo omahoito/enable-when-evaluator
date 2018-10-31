@@ -1,0 +1,62 @@
+{
+    "resourceType":"QuestionnaireResponse",
+    "meta":{
+        "profile": [
+            "http://phr.kanta.fi/StructureDefinition/fiphr-sd-questionnaireresponse-stu3"
+        ]
+    },
+    "language":"fi",
+    "identifier":{
+        "system":"urn:ietf:rfc:3986",
+        "value":"urn:uuid:4f6a5136-028c-457c-aeff-bdd984af197a"
+    },
+    "questionnaire":{
+        "reference":"Questionnaire/2"
+    },
+    "status":"completed",
+    "subject":{
+        "reference":"Patient/100"
+    },
+    "authored":"2018-09-04",
+    "source":{
+        "reference":"Patient/100"
+    },
+    "item": [
+        {
+            "linkId":"Q_JOHDANTO",
+            "text":"Vastaa kyselyyn"
+        },
+        {
+            "linkId":"Q_MAIN",
+            "text":"Choice test?",
+            "answer": [
+                {
+                    "valueInteger": 20
+                }
+            ]
+        },
+        {
+            "linkId":"Q_SECONDARY",
+            "text":"Pick one",
+            "answer": [
+                {
+                    "valueCoding":{
+                        "id":"837",
+                        "system":"http://phr.kanta.fi/CodeSystem/fiphr-cs-option-kuljetusapu-1-0",
+                        "code":"837",
+                        "display":"837"
+                    }
+                }
+            ]
+        },        
+        {
+            "linkId":"Q_CONDITIONAL",
+            "text":"Onko?",
+            "answer": [
+                {
+                    "valueBoolean":true
+                }
+            ]
+        }
+    ]
+}

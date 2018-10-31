@@ -1,0 +1,77 @@
+{
+    "resourceType":"Questionnaire",
+    "id": "2",
+    "meta":{
+        "profile": [
+            "http://phr.kanta.fi/StructureDefinition/fiphr-sd-questionnaire-stu3"
+        ]
+    },
+    "language":"fi",
+    "url":"https://oda.fi/Forms/enablewhentest2/1/fi",
+    "identifier": [
+        {
+            "use":"official",
+            "system":"urn:ietf:rfc:3986",
+            "value":"urn:uuid:8e691cd1-65e3-40ee-a9a8-a1a0530620ba"
+        }
+    ],
+    "version":"1.0",
+    "name":"enablewhentest2",
+    "title":"enablewhentest2",
+    "status":"draft",
+    "date":"2018-10-01T00:00:00+03:00",
+    "publisher":"SoteDigi Oy",
+    "description":"enablewhentest2",
+    "purpose":"enablewhentest2",
+    "approvalDate":"2018-03-14",
+    "code": [
+        {
+            "system":"http://phr.kanta.fi/CodeSystem/fiphr-cs-questionnairecode",
+            "code":"ODA-SOC-2"
+        }
+    ],
+    "item": [
+        {
+            "linkId":"Q_MAIN",
+            "text": "Ikäsi (vuosia)",
+            "type": "integer",
+            "required":true
+        },
+        {
+            "linkId":"Q_SECONDARY",
+            "text":"Pick one",
+            "type":"choice",
+            "required":true,
+            "option": [
+                {
+                    "valueCoding":{
+                        "id":"564",
+                        "system":"http://phr.kanta.fi/CodeSystem/fiphr-cs-option-kuljetusapu-1-0",
+                        "code":"564",
+                        "display":"Oulu"
+                    }
+                },
+                {
+                    "valueCoding":{
+                        "id":"837",
+                        "system":"http://phr.kanta.fi/CodeSystem/fiphr-cs-option-kuljetusapu-1-0",
+                        "code":"837",
+                        "display":"Tampere"
+                    }
+                }
+            ]
+        },        
+        {
+            "linkId":"Q_CONDITIONAL",
+            "text":"Onko?",
+            "type":"boolean",
+            "modifierExtension": [
+                {
+                    "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
+                    "valueString":"QuestionnaireResponse.item.where(linkId='Q_MAIN' and answer.value > 15).exists() and QuestionnaireResponse.item.where(linkId='Q_SECONDARY' and answer.value.code='837').exists()"
+                }
+            ],
+            "required": true
+        }
+    ]
+}
