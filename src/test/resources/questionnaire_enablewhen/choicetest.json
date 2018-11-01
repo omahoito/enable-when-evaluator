@@ -1,0 +1,43 @@
+{
+    "resourceType":"Questionnaire",
+    "status":"draft",
+    "item": [
+        {
+            "linkId":"Q_MAIN",
+            "text": "Always available question",
+            "type":"choice",
+            "required":true,
+            "option": [
+                {
+                    "valueCoding":{
+                        "system":"http://testcodesystem",
+                        "code":"1",
+                        "display":"Choice 1"
+                    }
+                },
+                {
+                    "valueCoding":{
+                        "system":"http://testcodesystem",
+                        "code":"2",
+                        "display":"Choice 2"
+                    }
+                }
+            ]
+        },
+        {
+            "linkId":"Q_CONDITIONAL",
+            "text":"Conditional question",
+            "type":"boolean",
+            "enableWhen": [
+                {
+                    "question":"Q_MAIN",
+                    "answerCoding":{
+                        "system":"http://testcodesystem",
+                        "code":"2"
+                    }
+                }
+            ],            
+            "required": true
+        }
+    ]
+}

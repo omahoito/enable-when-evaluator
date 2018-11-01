@@ -1,0 +1,36 @@
+{
+    "resourceType":"QuestionnaireResponse",
+    "status":"completed",
+    "item": [
+        {
+            "linkId":"Q_MAIN",
+            "text": "Always available question",
+            "answer": [
+                {
+                    "valueInteger": 20
+                }
+            ]
+        },
+        {
+            "linkId":"Q_SECONDARY",
+            "text": "Another always available question",
+            "answer": [
+                {
+                    "valueCoding":{
+                        "system":"http://testcodesystem",
+                        "code":"2"
+                    }
+                }
+            ]
+        },        
+        {
+            "linkId":"Q_CONDITIONAL",
+            "text":"Conditional question",
+            "answer": [
+                {
+                    "valueBoolean":true
+                }
+            ]
+        }
+    ]
+}

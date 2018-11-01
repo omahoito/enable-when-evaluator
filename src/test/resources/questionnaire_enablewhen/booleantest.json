@@ -1,0 +1,24 @@
+{
+    "resourceType":"Questionnaire",
+    "status":"draft",
+    "item": [
+        {
+            "linkId":"Q_MAIN",
+            "text": "Always available question",
+            "type":"boolean",
+            "required":true            
+        },
+        {
+            "linkId":"Q_CONDITIONAL",
+            "text":"Conditional question",
+            "type":"boolean",
+            "enableWhen": [
+                {
+                    "question":"Q_MAIN",
+                    "answerBoolean": true
+                }
+            ],            
+            "required": true
+        }
+    ]
+}

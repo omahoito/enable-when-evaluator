@@ -1,12 +1,12 @@
 package fi.oda.common.fhir.validation;
 
-import java.util.*;
-
-import org.hl7.fhir.dstu3.model.Extension;
+import org.hl7.fhir.dstu3.model.Questionnaire.QuestionnaireItemEnableWhenComponent;
+import org.hl7.fhir.dstu3.model.QuestionnaireResponse.QuestionnaireResponseItemComponent;
 
 public class EnableWhenResult {
     private final boolean enabled;
-    private final List<Extension> modifierExtensions;
+    private final QuestionnaireItemEnableWhenComponent enableWhenCondition;
+    private final QuestionnaireResponseItemComponent responseItem;
     private final String linkId;
 
     /**
@@ -16,18 +16,17 @@ public class EnableWhenResult {
      *            Evaluation result
      * @param linkId
      *            LinkId of the questionnaire item
-     * @param modifierExtensions
-     *            Modifier extensions of the enableWhen element. These can be
-     *            checked in a custom evaluator.
+     * @param enableWhenCondition
+     *            Evaluated enableWhen condition
+     * @param responseItem
+     *            item in QuestionnaireResponse
      */
-    public EnableWhenResult(boolean enabled, String linkId, List<Extension> modifierExtensions) {
+    public EnableWhenResult(boolean enabled, String linkId, QuestionnaireItemEnableWhenComponent enableWhenCondition,
+            QuestionnaireResponseItemComponent responseItem) {
         this.enabled = enabled;
         this.linkId = linkId;
-        this.modifierExtensions = modifierExtensions;
-    }
-
-    public EnableWhenResult(boolean enabled, String linkId) {
-        this(enabled, linkId, Collections.emptyList());
+        this.responseItem = responseItem;
+        this.enableWhenCondition = enableWhenCondition;
     }
 
     public boolean isEnabled() {
@@ -38,7 +37,11 @@ public class EnableWhenResult {
         return linkId;
     }
 
-    public List<Extension> getModifierExtensions() {
-        return modifierExtensions;
+    public QuestionnaireResponseItemComponent getResponseItem() {
+        return responseItem;
+    }
+
+    public QuestionnaireItemEnableWhenComponent getEnableWhenCondition() {
+        return enableWhenCondition;
     }
 }

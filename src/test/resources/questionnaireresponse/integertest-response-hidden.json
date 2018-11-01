@@ -1,0 +1,19 @@
+{
+    "resourceType":"QuestionnaireResponse",
+    "status":"completed",
+    "item": [
+        {
+            "linkId":"Q_MAIN",
+            "text": "Always available question",
+            "answer": [
+                {
+                    "valueInteger": 1
+                }
+            ]
+        },
+        {
+            "linkId":"Q_CONDITIONAL",
+            "text":"Conditional question"
+        }
+    ]
+}

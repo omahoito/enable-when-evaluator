@@ -1,0 +1,46 @@
+{
+    "resourceType":"Questionnaire",
+    "status":"draft",
+    "item": [
+        {
+            "linkId":"Q_MAIN",
+            "text": "Always available question",
+            "type": "integer",
+            "required":true
+        },
+        {
+            "linkId":"Q_SECONDARY",
+            "text": "Another always available question",
+            "type":"choice",
+            "required":true,
+             "option": [
+                {
+                    "valueCoding":{
+                        "system":"http://testcodesystem",
+                        "code":"1",
+                        "display":"Choice 1"
+                    }
+                },
+                {
+                    "valueCoding":{
+                        "system":"http://testcodesystem",
+                        "code":"2",
+                        "display":"Choice 2"
+                    }
+                }
+            ]
+        },        
+        {
+            "linkId":"Q_CONDITIONAL",
+            "text":"Conditional question",
+            "type":"boolean",
+            "modifierExtension": [
+                {
+                    "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
+                    "valueString":"QuestionnaireResponse.item.where(linkId='Q_MAIN' and answer.value > 15).exists() and QuestionnaireResponse.item.where(linkId='Q_SECONDARY' and answer.value.code='2').exists()"
+                }
+            ],
+            "required": true
+        }
+    ]
+}

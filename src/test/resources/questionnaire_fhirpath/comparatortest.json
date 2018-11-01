@@ -1,0 +1,24 @@
+{
+    "resourceType":"Questionnaire",
+    "status":"draft",
+    "item": [
+        {
+            "linkId":"Q_MAIN",
+            "text": "Always available question",
+            "type": "integer",
+            "required":true
+        },
+        {
+            "linkId":"Q_CONDITIONAL",
+            "text":"Conditional question",
+            "type":"boolean",
+            "modifierExtension": [
+                {
+                    "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
+                    "valueString":"QuestionnaireResponse.item.where(linkId='Q_MAIN' and answer.value > 15).exists()"
+                }
+            ],
+            "required": true
+        }
+    ]
+}

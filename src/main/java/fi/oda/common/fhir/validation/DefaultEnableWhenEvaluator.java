@@ -14,21 +14,44 @@ import org.hl7.fhir.dstu3.model.QuestionnaireResponse.*;
  *
  */
 public class DefaultEnableWhenEvaluator implements EnableWhenEvaluator {
+
     @Override
     public boolean isEnabled(QuestionnaireItemComponent questionnaireItem,
             QuestionnaireResponse questionnaireResponse) {
         if (!questionnaireItem.hasEnableWhen()) {
             return true;
         }
-        List<EnableWhenResult> evaluationResults = questionnaireItem.getEnableWhen().stream()
+        List<EnableWhenResult> evaluationResults = questionnaireItem.getEnableWhen()
+                .stream()
                 .map(enableCondition -> evaluateCondition(enableCondition, questionnaireResponse,
                         questionnaireItem.getLinkId()))
                 .collect(Collectors.toList());
-        return evaluateEnableWhenResults(evaluationResults);
+        return evaluationResults.stream().anyMatch(EnableWhenResult::isEnabled);
     }
 
-    public boolean evaluateEnableWhenResults(List<EnableWhenResult> evaluationResults) {
-        return evaluationResults.stream().anyMatch(EnableWhenResult::isEnabled);
+    public EnableWhenResult evaluateCondition(QuestionnaireItemEnableWhenComponent enableCondition,
+            QuestionnaireResponse questionnaireResponse, String linkId) {
+        //Find the answer from the QuestionnaireResponse 
+        QuestionnaireResponseItemComponent targetItem = findTargetQuestionAnswer(questionnaireResponse,
+                enableCondition.getQuestion()).orElseThrow(
+                        () -> new RuntimeException("EnableWhen condition refers to a non-existing Questionnaire.item"));
+        
+        if (enableCondition.hasHasAnswer() && enableCondition.hasAnswer()) {
+            throw new RuntimeException("Expected: hasAnswer or answer, but not both. Found both.");
+        }
+        if (enableCondition.hasHasAnswer()) {
+            if (enableCondition.getHasAnswer() == targetItem.hasAnswer()) {
+                return new EnableWhenResult(true, linkId, enableCondition, targetItem);
+            }
+            return new EnableWhenResult(false, linkId, enableCondition, targetItem);
+        }
+        if (enableCondition.hasAnswer()) {
+            boolean evaluationResult = targetItem.getAnswer().stream()
+                    .anyMatch(answer -> evaluateAnswer(enableCondition.getAnswer(), answer, linkId));
+            return new EnableWhenResult(evaluationResult, linkId, enableCondition, targetItem);
+
+        }
+        return new EnableWhenResult(false, linkId, enableCondition, targetItem);
     }
 
     private Optional<QuestionnaireResponseItemComponent> findTargetQuestionAnswer(
@@ -38,40 +61,10 @@ public class DefaultEnableWhenEvaluator implements EnableWhenEvaluator {
                 .filter(item -> item.getLinkId().equals(question)).findFirst();
     }
 
-    private EnableWhenResult evaluateCondition(QuestionnaireItemEnableWhenComponent enableCondition,
-            QuestionnaireResponse questionnaireResponse, String linkId) {
-        //Find the answer from the QuestionnaireResponse 
-        QuestionnaireResponseItemComponent targetItem = findTargetQuestionAnswer(questionnaireResponse,
-                enableCondition.getQuestion()).orElseThrow(
-                        () -> new RuntimeException("EnableWhen condition refers to a non-existing Questionnaire.item"));
-        
-        List<Extension> modifierExtensions = new ArrayList<>();
-        if (enableCondition.hasModifierExtension()){
-            modifierExtensions = enableCondition.getModifierExtension();
-        }
-        if (enableCondition.hasHasAnswer() && enableCondition.hasAnswer()) {
-            throw new RuntimeException("Expected: hasAnswer or answer, but not both. Found both.");
-        }
-        if (enableCondition.hasHasAnswer()) {
-            if (enableCondition.getHasAnswer() == targetItem.hasAnswer()) {
-                return new EnableWhenResult(true, linkId, modifierExtensions);
-            }
-            return new EnableWhenResult(false, linkId, modifierExtensions);
-        }
-        if (enableCondition.hasAnswer()) {
-
-            boolean evaluationResult = targetItem.getAnswer().stream()
-                    .anyMatch(answer -> evaluateAnswer(enableCondition.getAnswer(), answer, linkId));
-            return new EnableWhenResult(evaluationResult, linkId, modifierExtensions);
-
-        }
-        return new EnableWhenResult(false, linkId, modifierExtensions);
-    }
-
     private boolean evaluateAnswer(Type expectedAnswer, QuestionnaireResponseItemAnswerComponent actualAnswer,
             String questionLinkId) {
         if (expectedAnswer instanceof Coding) {
-            validateCodingAnswer((Coding) expectedAnswer, actualAnswer, questionLinkId);
+            return validateCodingAnswer((Coding) expectedAnswer, actualAnswer, questionLinkId);
         } else if (expectedAnswer instanceof PrimitiveType) {
             if (!actualAnswer.getValue().getClass().isAssignableFrom(expectedAnswer.getClass())) {
                 throw new RuntimeException("Expected answer and actual answer have incompatible types");

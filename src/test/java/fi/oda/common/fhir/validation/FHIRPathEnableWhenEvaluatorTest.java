@@ -17,8 +17,8 @@ import ca.uhn.fhir.context.FhirContext;
 
 public class FHIRPathEnableWhenEvaluatorTest {
     
-    private final String QUESTINNAIREFOLDER = "questionnairesfhirpath";
-    private final String QUESTINNAIRERESPONSEFOLDER = "questionnaireresponses";
+    private final String QUESTINNAIRE_FOLDER = "questionnaire_fhirpath";
+    private final String QUESTINNAIRERESPONSE_FOLDER = "questionnaireresponse";
 
     private final FhirContext fhirContext = FhirContext.forDstu3();
     private final IValidationSupport validationSupport = new DefaultProfileValidationSupport();
@@ -30,10 +30,10 @@ public class FHIRPathEnableWhenEvaluatorTest {
     private final Collection<String> expectedHidden = Collections.singleton("Q_CONDITIONAL");
 
     @Test
-    public void codingAnswerHiddenFhirPath() {
-        Questionnaire questionnaire = readQuestionnaire(QUESTINNAIREFOLDER + "/codingtest.json", fhirContext);
+    public void choiceAnswerHiddenFhirPath() {
+        Questionnaire questionnaire = readQuestionnaire(QUESTINNAIRE_FOLDER + "/choicetest.json", fhirContext);
         QuestionnaireResponse questionnaireresponse = (QuestionnaireResponse) readQuestionnaireResponse(
-                QUESTINNAIRERESPONSEFOLDER + "/codingtest-response-hidden.json", questionnaire, fhirContext);
+                QUESTINNAIRERESPONSE_FOLDER + "/codingtest-response-hidden.json", questionnaire, fhirContext);
 
         Set<String> disabled = questionnaireEvaluator.findDisabledItems(questionnaireresponse, questionnaire);
 
@@ -41,10 +41,10 @@ public class FHIRPathEnableWhenEvaluatorTest {
     }
 
     @Test
-    public void codingAnswerVisibleFhirPath() {
-        Questionnaire questionnaire = readQuestionnaire(QUESTINNAIREFOLDER + "/codingtest.json", fhirContext);
+    public void choiceAnswerVisibleFhirPath() {
+        Questionnaire questionnaire = readQuestionnaire(QUESTINNAIRE_FOLDER + "/choicetest.json", fhirContext);
         QuestionnaireResponse questionnaireresponse = (QuestionnaireResponse) readQuestionnaireResponse(
-                QUESTINNAIRERESPONSEFOLDER + "/codingtest-response-visible.json", questionnaire, fhirContext);
+                QUESTINNAIRERESPONSE_FOLDER + "/codingtest-response-visible.json", questionnaire, fhirContext);
 
         Set<String> disabled = questionnaireEvaluator.findDisabledItems(questionnaireresponse, questionnaire);
 
@@ -53,9 +53,9 @@ public class FHIRPathEnableWhenEvaluatorTest {
 
     @Test
     public void integerComparatorHiddenFhirPath() {
-        Questionnaire questionnaire = readQuestionnaire(QUESTINNAIREFOLDER + "/comparatortest.json", fhirContext);
+        Questionnaire questionnaire = readQuestionnaire(QUESTINNAIRE_FOLDER + "/comparatortest.json", fhirContext);
         QuestionnaireResponse questionnaireresponse = (QuestionnaireResponse) readQuestionnaireResponse(
-                QUESTINNAIRERESPONSEFOLDER + "/comparatortest-response-hidden.json", questionnaire, fhirContext);
+                QUESTINNAIRERESPONSE_FOLDER + "/comparatortest-response-hidden.json", questionnaire, fhirContext);
 
         Set<String> disabled = questionnaireEvaluator.findDisabledItems(questionnaireresponse, questionnaire);
 
@@ -64,9 +64,9 @@ public class FHIRPathEnableWhenEvaluatorTest {
 
     @Test
     public void integerComparatorVisibleFhirPath() {
-        Questionnaire questionnaire = readQuestionnaire(QUESTINNAIREFOLDER + "/comparatortest.json", fhirContext);
+        Questionnaire questionnaire = readQuestionnaire(QUESTINNAIRE_FOLDER + "/comparatortest.json", fhirContext);
         QuestionnaireResponse questionnaireresponse = (QuestionnaireResponse) readQuestionnaireResponse(
-                QUESTINNAIRERESPONSEFOLDER + "/comparatortest-response-visible.json", questionnaire, fhirContext);
+                QUESTINNAIRERESPONSE_FOLDER + "/comparatortest-response-visible.json", questionnaire, fhirContext);
 
         Set<String> disabled = questionnaireEvaluator.findDisabledItems(questionnaireresponse, questionnaire);
 
@@ -74,10 +74,10 @@ public class FHIRPathEnableWhenEvaluatorTest {
     }
 
     @Test
-    public void multicriteriaVisibleFhirPath() {
-        Questionnaire questionnaire = readQuestionnaire(QUESTINNAIREFOLDER + "/multicriteria.json", fhirContext);
+    public void multiCriteriaVisibleFhirPath() {
+        Questionnaire questionnaire = readQuestionnaire(QUESTINNAIRE_FOLDER + "/multicriteria.json", fhirContext);
         QuestionnaireResponse questionnaireresponse = (QuestionnaireResponse) readQuestionnaireResponse(
-                QUESTINNAIRERESPONSEFOLDER + "/multicriteria-response-visible.json", questionnaire, fhirContext);
+                QUESTINNAIRERESPONSE_FOLDER + "/multicriteria-response-visible.json", questionnaire, fhirContext);
 
         Set<String> disabled = questionnaireEvaluator.findDisabledItems(questionnaireresponse, questionnaire);
 
@@ -85,10 +85,10 @@ public class FHIRPathEnableWhenEvaluatorTest {
     }
 
     @Test
-    public void multicriteriaHiddenFhirPath1() {
-        Questionnaire questionnaire = readQuestionnaire(QUESTINNAIREFOLDER + "/multicriteria.json", fhirContext);
+    public void multiCriteriaHiddenFhirPath1() {
+        Questionnaire questionnaire = readQuestionnaire(QUESTINNAIRE_FOLDER + "/multicriteria.json", fhirContext);
         QuestionnaireResponse questionnaireresponse = (QuestionnaireResponse) readQuestionnaireResponse(
-                QUESTINNAIRERESPONSEFOLDER + "/multicriteria-response-hidden1.json", questionnaire, fhirContext);
+                QUESTINNAIRERESPONSE_FOLDER + "/multicriteria-response-hidden1.json", questionnaire, fhirContext);
 
         Set<String> disabled = questionnaireEvaluator.findDisabledItems(questionnaireresponse, questionnaire);
 
@@ -96,10 +96,10 @@ public class FHIRPathEnableWhenEvaluatorTest {
     }
 
     @Test
-    public void multicriteriaHiddenFhirPath2() {
-        Questionnaire questionnaire = readQuestionnaire(QUESTINNAIREFOLDER + "/multicriteria.json", fhirContext);
+    public void multiCriteriaHiddenFhirPath2() {
+        Questionnaire questionnaire = readQuestionnaire(QUESTINNAIRE_FOLDER + "/multicriteria.json", fhirContext);
         QuestionnaireResponse questionnaireresponse = (QuestionnaireResponse) readQuestionnaireResponse(
-                QUESTINNAIRERESPONSEFOLDER + "/multicriteria-response-hidden2.json", questionnaire, fhirContext);
+                QUESTINNAIRERESPONSE_FOLDER + "/multicriteria-response-hidden2.json", questionnaire, fhirContext);
 
         Set<String> disabled = questionnaireEvaluator.findDisabledItems(questionnaireresponse, questionnaire);
 
@@ -107,10 +107,10 @@ public class FHIRPathEnableWhenEvaluatorTest {
     }
 
     @Test
-    public void multicriteriaHiddenFhirPath3() {
-        Questionnaire questionnaire = readQuestionnaire(QUESTINNAIREFOLDER + "/multicriteria.json", fhirContext);
+    public void multiCriteriaHiddenFhirPath3() {
+        Questionnaire questionnaire = readQuestionnaire(QUESTINNAIRE_FOLDER + "/multicriteria.json", fhirContext);
         QuestionnaireResponse questionnaireresponse = (QuestionnaireResponse) readQuestionnaireResponse(
-                QUESTINNAIRERESPONSEFOLDER + "/multicriteria-response-hidden3.json", questionnaire, fhirContext);
+                QUESTINNAIRERESPONSE_FOLDER + "/multicriteria-response-hidden3.json", questionnaire, fhirContext);
 
         Set<String> disabled = questionnaireEvaluator.findDisabledItems(questionnaireresponse, questionnaire);
 

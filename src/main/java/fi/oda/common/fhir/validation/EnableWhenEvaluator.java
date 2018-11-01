@@ -5,7 +5,7 @@ import org.hl7.fhir.dstu3.model.QuestionnaireResponse;
 
 public interface EnableWhenEvaluator {
     /**
-     * Evaluates whether a QuestionnaireItem is enabled or not
+     * Evaluates whether a QuestionnaireItemComponent is enabled or not
      */
     public boolean isEnabled(QuestionnaireItemComponent questionnaireItem, QuestionnaireResponse questionnaireResponse);
 }
