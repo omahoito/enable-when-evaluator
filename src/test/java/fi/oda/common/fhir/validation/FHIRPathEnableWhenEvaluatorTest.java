@@ -15,7 +15,7 @@ import org.junit.Test;
 
 import ca.uhn.fhir.context.FhirContext;
 
-public class EnableWhenEvaluatorTest {
+public class FHIRPathEnableWhenEvaluatorTest {
     
     private final String QUESTINNAIREFOLDER = "questionnaires";
     private final String QUESTINNAIRERESPONSEFOLDER = "questionnaireresponses";
@@ -24,7 +24,10 @@ public class EnableWhenEvaluatorTest {
     private final IValidationSupport validationSupport = new DefaultProfileValidationSupport();
     private final IWorkerContext workerContext = new HapiWorkerContext(fhirContext, validationSupport);
     private final FHIRPathEngine fhirPathEngine = new FHIRPathEngine(workerContext);
-    private final EnableWhenEvaluator evaluator = new EnableWhenEvaluator(fhirPathEngine);
+    private final DefaultEnableWhenEvaluator enableWhenEvaluator = new FHIRPathEnableWhenEvaluator(fhirPathEngine);
+    private final QuestionnaireEnableWhenEvaluator questionnaireEvaluator = new QuestionnaireEnableWhenEvaluator(
+            enableWhenEvaluator);
+    private final Collection<String> expectedHidden = Collections.singleton("Q_CONDITIONAL");
 
     @Test
     public void codingAnswerHiddenFhirPath() {
@@ -32,9 +35,9 @@ public class EnableWhenEvaluatorTest {
         QuestionnaireResponse questionnaireresponse = (QuestionnaireResponse) readQuestionnaireResponse(
                 QUESTINNAIRERESPONSEFOLDER + "/codingtest-response-hidden.json", questionnaire, fhirContext);
 
-        Set<String> disabled = evaluator.findDisabledItems(questionnaireresponse, questionnaire);
+        Set<String> disabled = questionnaireEvaluator.findDisabledItems(questionnaireresponse, questionnaire);
 
-        assertThat(disabled, equalTo(Collections.singleton("Q_CONDITIONAL")));
+        assertThat(disabled, equalTo(expectedHidden));
     }
 
     @Test
@@ -43,7 +46,7 @@ public class EnableWhenEvaluatorTest {
         QuestionnaireResponse questionnaireresponse = (QuestionnaireResponse) readQuestionnaireResponse(
                 QUESTINNAIRERESPONSEFOLDER + "/codingtest-response-visible.json", questionnaire, fhirContext);
 
-        Set<String> disabled = evaluator.findDisabledItems(questionnaireresponse, questionnaire);
+        Set<String> disabled = questionnaireEvaluator.findDisabledItems(questionnaireresponse, questionnaire);
 
         assertThat(disabled, empty());
     }
@@ -54,9 +57,9 @@ public class EnableWhenEvaluatorTest {
         QuestionnaireResponse questionnaireresponse = (QuestionnaireResponse) readQuestionnaireResponse(
                 QUESTINNAIRERESPONSEFOLDER + "/comparatortest-response-hidden.json", questionnaire, fhirContext);
 
-        Set<String> disabled = evaluator.findDisabledItems(questionnaireresponse, questionnaire);
+        Set<String> disabled = questionnaireEvaluator.findDisabledItems(questionnaireresponse, questionnaire);
 
-        assertThat(disabled, equalTo(Collections.singleton("Q_CONDITIONAL")));
+        assertThat(disabled, equalTo(expectedHidden));
     }
 
     @Test
@@ -65,7 +68,7 @@ public class EnableWhenEvaluatorTest {
         QuestionnaireResponse questionnaireresponse = (QuestionnaireResponse) readQuestionnaireResponse(
                 QUESTINNAIRERESPONSEFOLDER + "/comparatortest-response-visible.json", questionnaire, fhirContext);
 
-        Set<String> disabled = evaluator.findDisabledItems(questionnaireresponse, questionnaire);
+        Set<String> disabled = questionnaireEvaluator.findDisabledItems(questionnaireresponse, questionnaire);
 
         assertThat(disabled, empty());
     }
@@ -76,7 +79,7 @@ public class EnableWhenEvaluatorTest {
         QuestionnaireResponse questionnaireresponse = (QuestionnaireResponse) readQuestionnaireResponse(
                 QUESTINNAIRERESPONSEFOLDER + "/multicriteria-response-visible.json", questionnaire, fhirContext);
 
-        Set<String> disabled = evaluator.findDisabledItems(questionnaireresponse, questionnaire);
+        Set<String> disabled = questionnaireEvaluator.findDisabledItems(questionnaireresponse, questionnaire);
 
         assertThat(disabled, empty());
     }
@@ -87,9 +90,9 @@ public class EnableWhenEvaluatorTest {
         QuestionnaireResponse questionnaireresponse = (QuestionnaireResponse) readQuestionnaireResponse(
                 QUESTINNAIRERESPONSEFOLDER + "/multicriteria-response-hidden1.json", questionnaire, fhirContext);
 
-        Set<String> disabled = evaluator.findDisabledItems(questionnaireresponse, questionnaire);
+        Set<String> disabled = questionnaireEvaluator.findDisabledItems(questionnaireresponse, questionnaire);
 
-        assertThat(disabled, equalTo(Collections.singleton("Q_CONDITIONAL")));
+        assertThat(disabled, equalTo(expectedHidden));
     }
 
     @Test
@@ -98,9 +101,9 @@ public class EnableWhenEvaluatorTest {
         QuestionnaireResponse questionnaireresponse = (QuestionnaireResponse) readQuestionnaireResponse(
                 QUESTINNAIRERESPONSEFOLDER + "/multicriteria-response-hidden2.json", questionnaire, fhirContext);
 
-        Set<String> disabled = evaluator.findDisabledItems(questionnaireresponse, questionnaire);
+        Set<String> disabled = questionnaireEvaluator.findDisabledItems(questionnaireresponse, questionnaire);
 
-        assertThat(disabled, equalTo(Collections.singleton("Q_CONDITIONAL")));
+        assertThat(disabled, equalTo(expectedHidden));
     }
 
     @Test
@@ -109,8 +112,8 @@ public class EnableWhenEvaluatorTest {
         QuestionnaireResponse questionnaireresponse = (QuestionnaireResponse) readQuestionnaireResponse(
                 QUESTINNAIRERESPONSEFOLDER + "/multicriteria-response-hidden3.json", questionnaire, fhirContext);
 
-        Set<String> disabled = evaluator.findDisabledItems(questionnaireresponse, questionnaire);
+        Set<String> disabled = questionnaireEvaluator.findDisabledItems(questionnaireresponse, questionnaire);
 
-        assertThat(disabled, equalTo(Collections.singleton("Q_CONDITIONAL")));
+        assertThat(disabled, equalTo(expectedHidden));
     }
 }
