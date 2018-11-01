@@ -17,14 +17,14 @@ import ca.uhn.fhir.context.FhirContext;
 
 public class FHIRPathEnableWhenEvaluatorTest {
     
-    private final String QUESTINNAIREFOLDER = "questionnaires";
+    private final String QUESTINNAIREFOLDER = "questionnairesfhirpath";
     private final String QUESTINNAIRERESPONSEFOLDER = "questionnaireresponses";
 
     private final FhirContext fhirContext = FhirContext.forDstu3();
     private final IValidationSupport validationSupport = new DefaultProfileValidationSupport();
     private final IWorkerContext workerContext = new HapiWorkerContext(fhirContext, validationSupport);
     private final FHIRPathEngine fhirPathEngine = new FHIRPathEngine(workerContext);
-    private final DefaultEnableWhenEvaluator enableWhenEvaluator = new FHIRPathEnableWhenEvaluator(fhirPathEngine);
+    private final EnableWhenEvaluator enableWhenEvaluator = new FHIRPathEnableWhenEvaluator(fhirPathEngine);
     private final QuestionnaireEnableWhenEvaluator questionnaireEvaluator = new QuestionnaireEnableWhenEvaluator(
             enableWhenEvaluator);
     private final Collection<String> expectedHidden = Collections.singleton("Q_CONDITIONAL");
