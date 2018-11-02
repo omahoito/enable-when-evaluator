@@ -17,23 +17,12 @@ targetCompatibility = 1.8
 
 repositories {
    mavenCentral()
-
-    def isThisJenkinsBuild = System.env.BUILD_NUMBER != null
-    def forceMavenLocal = false
-
-    if (forceMavenLocal || isThisJenkinsBuild) {
-        mavenLocal()
-    } else {
-        maven {
-            url "https://oda-maven.solita.fi/repository/snapshots"
-        }
-        mavenLocal()
-    }
+   mavenLocal()
 }
 
 dependencies {
 
-    def hapiVersion = '3.2.0'
+    def hapiVersion = '3.5.0'
 
     compile("ca.uhn.hapi.fhir:hapi-fhir-base:${hapiVersion}")
     compile("ca.uhn.hapi.fhir:hapi-fhir-structures-dstu3:${hapiVersion}")
