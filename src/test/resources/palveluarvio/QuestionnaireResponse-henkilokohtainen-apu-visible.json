@@ -1,0 +1,95 @@
+{
+  "resourceType": "QuestionnaireResponse",
+  "language": "fi",
+  "questionnaire": {
+    "reference": "Questionnaire/12"
+  },
+  "meta": {
+    "profile": [
+      "http://phr.kanta.fi/StructureDefinition/fiphr-sd-questionnaireresponse-stu3"
+    ]
+  },
+  "text": {
+    "status": "generated",
+    "div": "<div>text</div>"
+  },
+  "authored": "2018-09-04",
+  "source": {
+    "reference": "Patient/123"
+  },
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "urn:uuid:4f6a5136-028c-457c-aeff-bdd984af197a"
+    }
+  ],
+  "status": "completed",
+  "subject": {
+    "reference": "Patient/123"
+  },
+  "item": [
+    {
+      "linkId": "Q_JOHDANTO",
+      "text": "<p>Vastaa kyselyyn oman tai läheisesi elämäntilanteen mukaisesti. Vastaustesi perusteella saat sopivan toimintasuosituksen ja ohjauksen esimerkiksi järjestöjen palveluihin, julkisiin kaikille avoimiin palveluihin tai tiettyjen julkisten sosiaalipalvelujen hakemiseen. Huomioithan, että kysely on suuntaa antava, eikä päätös palvelun saamisesta.</p>"
+    },
+    {
+      "linkId": "Q_KUNTA",
+      "text": "<p>Kotikuntasi?</p>",
+      "answer": [
+        {
+          "valueCoding": {
+            "id": "default",
+            "code": "default",
+            "system": "http://phr.kanta.fi/CodeSystem/fiphr-cs-option-henkilokohtainen-apu-1-0",
+            "display": "Muu"
+          }
+        }
+      ]
+    },
+    {
+      "linkId": "Q1_TARVITSETKO_TOISTUVASTI_APUA_KOTONA",
+      "text": "<p>Tarvitsetko toistuvasti toisen ihmisen apua kotona tapahtuvissa päivittäisissä toiminnoissa?</p>",
+      "answer": [
+        {
+          "valueBoolean": true
+        }
+      ]
+    },
+    {
+      "linkId": "Q2_TARVITSETKO_VALTTAMATTA_APUA_KODIN_ULKOPUOLELLA",
+      "text": "<p>Tarvitsetko toistuvasti toisen ihmisen apua kodin ulkopuolella?</p>",
+      "answer": [
+        {
+          "valueBoolean": true
+        }
+      ]
+    },
+    {
+      "linkId": "Q3_JOHTUUKO_TARPEESI_IKAANTYMISEEN_LIITTYVISTA_SAIRAUKSISTA_JA_RAJOITTEISTA",
+      "text": "<p>Johtuuko avun tarpeesi ikääntymiseen liittyvistä sairauksista tai toimintarajoitteista?</p>",
+      "answer": [
+        {
+          "valueBoolean": false
+        }
+      ]      
+    },
+    {
+      "linkId": "Q4_JOHTUUKO_TARPEESI_PITKAAIKAISESTA_TAI_ETENEVASTA_SAIRAUDESTA_TAI_VAMMASTA",
+      "text": "<p>Johtuuko avun tarpeesi pitkäaikaisesta tai etenevästä sairaudesta tai vammasta?</p>",
+      "answer": [
+        {
+          "valueBoolean": true
+        }      
+      ]
+    },
+    {
+      "linkId": "Q5_OSAATKO_JA_PYSTYTKO_ITSE_MAARITTELEMAAN_TARVITSEMASI_AVUN_SISALLON_JA_TOTEUTTAMISTAVAN",
+      "text": "<p>Osaatko ja pystytkö itse määrittelemään tarvitsemasi avun sisällön ja toteuttamistavan?</p>",
+      "answer": [
+        {
+          "valueBoolean": true
+        }      
+      ]      
+    }
+  ]
+}

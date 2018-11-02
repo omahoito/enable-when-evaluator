@@ -1,6 +1,6 @@
 package fi.oda.common.fhir.validation;
 
-import static fi.oda.common.fhir.validation.TestUtils.*;
+import static fi.oda.common.fhir.validation.utils.TestUtils.*;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
@@ -10,6 +10,7 @@ import org.hl7.fhir.dstu3.model.*;
 import org.junit.Test;
 
 import ca.uhn.fhir.context.FhirContext;
+import fi.oda.common.fhir.validation.utils.QuestionnaireEnableWhenEvaluator;
 
 public class DefaultEnableWhenEvaluatorTest {
     

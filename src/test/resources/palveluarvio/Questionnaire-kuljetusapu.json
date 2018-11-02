@@ -1,0 +1,238 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "11",
+  "meta": {
+    "profile": [
+      "http://phr.kanta.fi/StructureDefinition/fiphr-sd-questionnaire-stu3"
+    ],
+    "tag": [
+      {
+        "system": "http://oda.fi/Questionnaire",
+        "code": "social-service-request"
+      },
+      {
+        "system": "http://oda.fi/Questionnaire",
+        "code": "symptom"
+      },
+      {
+        "system": "http://oda.fi/cds",
+        "code": "oda-social"
+      }
+    ]
+  },
+  "language": "fi",
+  "code": [
+    {
+      "system": "http://phr.kanta.fi/CodeSystem/fiphr-cs-questionnairecode",
+      "code": "ODA-SOC-2"
+    }
+  ],
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Arvio auttaa sinua selvittämään, onko sinulla tai läheiselläsi edellytyksiä hakea sosiaalihuoltolain tai vammaispalvelulain mukaista liikkumista tukevaa palvelua. Vastaustesi perusteella saat toimintasuosituksen ja vinkkejä liikkumista tukevista palveluista.</div>"
+  },
+  "url": "https://oda.fi/Forms/kuljetusapu/1/fi",
+  "identifier": [
+    {
+      "use": "official",
+      "system": "urn:ietf:rfc:3986",
+      "value": "urn:uuid:63d74688-b7c1-4e0b-87b4-7906cf7aea70"
+    },
+    {
+      "system": "https://oda.fi/Forms",
+      "value": "kuljetusapu"
+    }
+  ],
+  "version": "1.0",
+  "name": "kuljetusapu",
+  "title": "Arvio liikkumisesta kodin ulkopuolella",
+  "status": "draft",
+  "date": "2018-10-01T00:00:00+03:00",
+  "publisher": "SoteDigi Oy",
+  "description": "Arvio liikkumisesta kodin ulkopuolella",
+  "purpose": "Kysely selvittää alustavasti onko kansalaisella oikeutta kuljetusapuun",
+  "approvalDate": "2018-03-14",
+  "item": [
+    {
+      "linkId": "Q_JOHDANTO",
+      "text": "Vastaa kyselyyn oman tai läheisesi elämäntilanteen mukaisesti. Vastaustesi perusteella saat sopivan toimintasuosituksen ja ohjauksen esimerkiksi järjestöjen palveluihin, julkisiin kaikille avoimiin palveluihin tai tiettyjen julkisten sosiaalipalvelujen hakemiseen. Huomioithan, että kysely on suuntaa antava, eikä päätös palvelun saamisesta.",
+      "type": "display"
+    },
+    {
+      "linkId": "Q_KUNTA",
+      "text": "Kotikuntasi?",
+      "type": "choice",
+      "required": true,
+      "option": [
+        {
+          "valueCoding": {
+            "id": "564",
+            "code": "564",
+            "system": "http://phr.kanta.fi/CodeSystem/fiphr-cs-option-kuljetusapu-1-0",
+            "display": "Oulu"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "837",
+            "code": "837",
+            "system": "http://phr.kanta.fi/CodeSystem/fiphr-cs-option-kuljetusapu-1-0",
+            "display": "Tampere"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "default",
+            "code": "default",
+            "system": "http://phr.kanta.fi/CodeSystem/fiphr-cs-option-kuljetusapu-1-0",
+            "display": "Muu"
+          }
+        }
+      ]
+    },
+    {
+      "linkId": "Q1_ONKO_SINULLA_VAIKEUKSIA_LIIKKUMISESSA",
+      "text": "Onko sinulla vaikeuksia liikkua kodin ulkopuolella?",
+      "type": "boolean",
+      "modifierExtension": [
+        {
+            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
+            "valueString":"QuestionnaireResponse.item.where(linkId='Q_KUNTA' and answer.exists()).exists()"
+        }
+      ],
+      "required": true
+    },
+    {
+      "linkId": "Q2_ONKO_KAYTOSSA_LIIKKUMISEN_APUVALINEITA",
+      "text": "Onko käytössäsi <span title=\"Liikkumisen apuvälineitä ovat kyynärsauvat ja kävelykepit, rollaattorit, manuaali - ja sähköpyörätuolit ja sähkömopot, apuvälineeksi luokiteltavat polkupyörät esimerkiksi potkupyörät, kolmi- ja nelipyöräiset polkupyörät ja käsin poljettavat polkupyörät.\">liikkumisen apuvälineitä</span>?",
+      "type": "boolean",
+      "modifierExtension": [
+        {
+            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
+            "valueString":"QuestionnaireResponse.item.where(linkId='Q1_ONKO_SINULLA_VAIKEUKSIA_LIIKKUMISESSA' and answer.value=true).exists()"
+        }
+      ],
+      "required": true
+    },
+    {
+      "linkId": "Q3_TARVITSETKO_APUA_TERVEYDENHUOLTOMATKOIHIN",
+      "text": "Tarvitsetko apua <span title=\"Sosiaalihuolto- tai vammaispalvelulain mukaisia kuljetuspalveluja ei voi käyttää julkisen tai yksityisen terveydenhuollon tai kuntoutuksen käynteihin. Voit olla yhteydessä Kelaan terveydenhuollon tai kuntoutuksen matkoihin liittyen.\">terveydenhuollon matkoihin</span>?",
+      "type": "boolean",
+      "modifierExtension": [
+        {
+            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
+            "valueString":"QuestionnaireResponse.item.where(linkId='Q2_ONKO_KAYTOSSA_LIIKKUMISEN_APUVALINEITA' and answer.exists()).exists()"
+        }
+      ],
+      "required": true
+    },
+    {
+      "linkId": "Q4_1_TARVITSETKO_APUA_TYO_TAI_OPISKELUMATKOIHIN",
+      "text": "Tarvitsetko apua työ- tai opiskelumatkoihin?",
+      "type": "boolean",
+      "modifierExtension": [
+        {
+            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
+            "valueString":"QuestionnaireResponse.item.where(linkId='Q3_TARVITSETKO_APUA_TERVEYDENHUOLTOMATKOIHIN' and answer.exists()).exists()"
+        }
+      ],
+      "required": true
+    },
+    {
+      "linkId": "Q4_2_TARVITSETKO_APUA_ASIOINTI_JA_VIRKISTYSMATKOIHIN",
+      "text": "Tarvitsetko apua asiointi- ja virkistysmatkoihin, yhteiskunnallisen osallistumiseen tai muihin vastaaviin matkoihin?",
+      "type": "boolean",
+      "modifierExtension": [
+        {
+            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
+            "valueString":"QuestionnaireResponse.item.where(linkId='Q4_1_TARVITSETKO_APUA_TYO_TAI_OPISKELUMATKOIHIN' and answer.exists()).exists()"
+        }
+      ],      
+      "required": true
+    },
+    {
+      "linkId": "Q5_PYSTYTKO_LIIKKUMAAN_ITSENAISESTI_JOUKKOLIIKENTEELLA",
+      "text": "Pystytkö liikkumaan itsenäisesti <span title=\"Julkinen linja-auto- ja junaliikenne on ensisijainen tapa järjestää kaikille soveltuva liikkuminen. Julkinen joukkoliikenne sisältää kutsu- ja palveluliikenteen.\">julkisella joukkoliikenteellä</span>?",
+      "type": "boolean",
+      "modifierExtension": [
+        {
+            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
+            "valueString":"QuestionnaireResponse.item.where(linkId='Q4_1_TARVITSETKO_APUA_TYO_TAI_OPISKELUMATKOIHIN' and answer.value=true).exists() and QuestionnaireResponse.item.where(linkId='Q4_2_TARVITSETKO_APUA_ASIOINTI_JA_VIRKISTYSMATKOIHIN' and answer.value=true).exists()"
+        }
+      ],      
+      "required": true
+    },
+    {
+      "linkId": "Q6_PYSTYTKO_LIIKKUMAAN_JOUKKO_PALVELU_LIIKENTEELLA_SAATTAJAN_AVULLA",
+      "text": "Pystytkö liikkumaan julkisella joukkoliikenteellä, jos sinulla on saattaja?",
+      "type": "boolean",
+      "modifierExtension": [
+        {
+            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
+            "valueString":"QuestionnaireResponse.item.where(linkId='Q5_PYSTYTKO_LIIKKUMAAN_ITSENAISESTI_JOUKKOLIIKENTEELLA' and answer.value=false).exists()"
+        }
+      ],
+      "required": true
+    },
+    {
+      "linkId": "Q7_JOHTUUKO_TARPEESI_IKAANTYMISESTA",
+      "text": "Onko liikkumiskykysi <span title=\"Henkilö, jonka fyysinen, kognitiivinen, psyykkinen tai sosiaalinen toimintakyky on heikentynyt korkean iän myötä alkaneiden, lisääntyneiden tai pahentuneiden sairauksien tai vammojen vuoksi taikka korkeaan ikään liittyvän rappeutumisen johdosta.\">heikentynyt ikääntymisen vuoksi</span>?",
+      "type": "boolean",
+      "modifierExtension": [
+        {
+            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
+            "valueString":"QuestionnaireResponse.item.where(linkId='Q6_PYSTYTKO_LIIKKUMAAN_JOUKKO_PALVELU_LIIKENTEELLA_SAATTAJAN_AVULLA' and answer.exists()).exists()"
+        }
+      ],      
+      "required": true
+    },
+    {
+      "linkId": "Q9_JOHTUUKO_TARPEESI_PITKAAIKAISESTA_TAI_ETENEVASTA_SAIRAUDESTA_TAI_VAMMASTA",
+      "text": "Onko liikkumiskykysi heikentynyt <span title=\"Sellainen sairaus tai vamma, joka ei ole luonteeltaan ohimenevä, kuten esimerkiksi jalan murtuminen. Eteneviä sairauksia ovat esimerkiksi MS-tauti, eräät lihassairaudet ja ALS. \">pitkäaikaisen tai etenevän sairauden tai vamman</span> vuoksi?",
+      "type": "boolean",
+      "modifierExtension": [
+        {
+            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
+            "valueString":"QuestionnaireResponse.item.where(linkId='Q7_JOHTUUKO_TARPEESI_IKAANTYMISESTA' and answer.exists()).exists()"
+        }
+      ],      
+      "required": true
+    },
+    {
+      "linkId": "Q10_1_ASUTKO_AVO_TAI_AVIOPUOLISON_KANSSA",
+      "text": "Asutko yhteistaloudessa avo- tai aviopuolison kanssa?",
+      "type": "boolean",
+      "modifierExtension": [
+        {
+            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
+            "valueString":"QuestionnaireResponse.item.where(linkId='Q_KUNTA' and answer.value.code='564').exists() and QuestionnaireResponse.item.where(linkId='Q7_JOHTUUKO_TARPEESI_IKAANTYMISESTA' and answer.value=true).exists() and QuestionnaireResponse.item.where(linkId='Q9_JOHTUUKO_TARPEESI_PITKAAIKAISESTA_TAI_ETENEVASTA_SAIRAUDESTA_TAI_VAMMASTA' and answer.value=false).exists()"
+        }
+      ],
+      "required": true
+    },
+    {
+      "linkId": "Q10_2_ONKO_BRUTTOTULONNE_ALLE",
+      "text": "Ovatko yhteiset bruttotulonne alle 2270€/kk?",
+      "type": "boolean",
+      "modifierExtension": [
+        {
+            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
+            "valueString":"QuestionnaireResponse.item.where(linkId='Q_KUNTA' and answer.value.code='564').exists() and QuestionnaireResponse.item.where(linkId='Q10_1_ASUTKO_AVO_TAI_AVIOPUOLISON_KANSSA' and answer.value=true).exists()"
+        }
+      ],
+      "required": true
+    },
+    {
+      "linkId": "Q10_3_ONKO_BRUTTOTULOSI_ALLE",
+      "text": "Onko bruttotulosi alle 1406€/kk?",
+      "type": "boolean",
+      "modifierExtension": [
+        {
+            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
+            "valueString":"QuestionnaireResponse.item.where(linkId='Q_KUNTA' and answer.value.code='564').exists() and QuestionnaireResponse.item.where(linkId='Q10_1_ASUTKO_AVO_TAI_AVIOPUOLISON_KANSSA' and answer.value=false).exists()"
+        }
+      ],
+      "required": true
+    }
+  ]
+}

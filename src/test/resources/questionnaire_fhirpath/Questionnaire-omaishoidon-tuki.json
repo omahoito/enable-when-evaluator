@@ -1,0 +1,161 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "10",
+  "meta": {
+    "profile": [
+      "http://phr.kanta.fi/StructureDefinition/fiphr-sd-questionnaire-stu3"
+    ],
+    "tag": [
+      {
+        "system": "http://oda.fi/Questionnaire",
+        "code": "symptom"
+      },
+      {
+        "system": "http://oda.fi/Questionnaire",
+        "code": "social-service-request"
+      },
+      {
+        "system": "http://oda.fi/cds",
+        "code": "oda-social"
+      }
+    ]
+  },
+  "language": "fi",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Arvio auttaa sinua selvittämään, onko sinulla tai läheiselläsi edellytyksiä hakea omaishoidon tukea. Vastaustesi perusteella saat toimintasuosituksen ja lisätietoja tilanteesi tueksi.</div>"
+  },
+  "url": "https://oda.fi/Forms/omaishoidon/123/fi",
+  "code": [
+    {
+      "system": "http://phr.kanta.fi/CodeSystem/fiphr-cs-questionnairecode",
+      "code": "ODA-SOC-3"
+    }
+  ],
+  "identifier": [
+    {
+      "use": "official",
+      "system": "urn:ietf:rfc:3986",
+      "value": "urn:uuid:0929fc3f-5de7-46b1-a112-a32a9a5811a2"
+    },
+    {
+      "system": "https://oda.fi/Forms",
+      "value": "omaishoidon-tuki"
+    }
+  ],
+  "version": "1.0",
+  "name": "omaishoidon-tuki",
+  "title": "Arvio omaishoitotilanteesta",
+  "status": "draft",
+  "date": "2018-09-14T00:00:00+03:00",
+  "publisher": "SoteDigi Oy",
+  "description": "Arvio omaishoitotilanteesta",
+  "purpose": "Kysely selvittää alustavasti onko kansalaisella oikeutta omaishoidon tukeen",
+  "approvalDate": "2018-03-14",
+  "item": [
+    {
+      "linkId": "Q_JOHDANTO",
+      "text": "Vastaa kyselyyn hoitoa, huolenpitoa tai valvontaa tarvitsevan näkökulmasta. Vastaustesi perusteella saat sopivan toimintasuosituksen ja ohjauksen esimerkiksi järjestöjen palveluihin, julkisiin kaikille avoimiin palveluihin tai tiettyjen julkisten sosiaalipalvelujen hakemiseen. Huomioithan, että kysely on suuntaa antava, eikä päätös palvelun saamisesta.",
+      "type": "display"
+    },
+    {
+      "linkId": "Q_PAIJAT_HAMEEN_HYVINVOINTIKUNTAYHTYMA",
+      "text": "Päijät-Hämeen hyvinvointikuntayhtymään kuuluvat Asikkala, Hartola, Hollola, Iitti, Kärkölä, Lahti, Myrskylä, Orimattila, Padasjoki ja Pukkila.",
+      "type": "display"
+    },
+    {
+      "linkId": "Q_KUNTA",
+      "text": "Kotikuntasi tai sote-alueesi?",
+      "type": "choice",
+      "required": true,
+      "option": [
+        {
+          "valueCoding": {
+            "id": "PAIJAT_HAMEEN_HYVINVOINTIKUNTAYHTYMA",
+            "code": "PAIJAT_HAMEEN_HYVINVOINTIKUNTAYHTYMA",
+            "system": "http://phr.kanta.fi/CodeSystem/fiphr-cs-option-omaishoidon-tuki-1-0",
+            "display": "Päijät-Hämeen hyvinvointikuntayhtymä"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "564",
+            "system": "http://phr.kanta.fi/CodeSystem/fiphr-cs-option-omaishoidon-tuki-1-0",
+            "code": "564",
+            "display": "Oulu"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "837",
+            "system": "http://phr.kanta.fi/CodeSystem/fiphr-cs-option-omaishoidon-tuki-1-0",
+            "code": "837",
+            "display": "Tampere"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "default",
+            "code": "default",
+            "system": "http://phr.kanta.fi/CodeSystem/fiphr-cs-option-omaishoidon-tuki-1-0",
+            "display": "Muu"
+          }
+        }
+      ]
+    },
+    {
+      "linkId": "Q1_TARVITSETKO_HOITOA",
+      "text": "Tarvitsetko hoitoa, huolenpitoa tai valvontaa henkilökohtaisissa toiminnoissa, kuten wc-toimissa, pukeutumisessa, peseytymisessä ja syömisessä?",
+      "type": "boolean",
+      "modifierExtension": [
+        {
+            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
+            "valueString":"QuestionnaireResponse.item.where(linkId='Q_KUNTA' and answer.exists()).exists()"
+        }
+      ],		  
+      "required": true
+    },
+    {
+      "linkId": "Q2_TARVITSETKO_PAIVITTAISTA",
+      "text": "Tarvitsetko päivittäin hoitoa, huolenpitoa tai valvontaa joko yhtäjaksoisesti tai vähäisin keskeytyksin?",
+      "type": "boolean",
+      "modifierExtension": [
+        {
+            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
+            "valueString":"QuestionnaireResponse.item.where(linkId='Q1_TARVITSETKO_HOITOA' and answer.value=true).exists()"
+        }
+      ],	  
+      "enableWhen": [
+        {
+          "question": "Q1_TARVITSETKO_HOITOA",
+          "answerBoolean": true
+        }
+      ],
+      "required": true
+    },
+    {
+      "linkId": "Q3_TARVITSETKO_HOITOA",
+      "text": "Tarvitsetko hoitoa, huolenpitoa tai valvontaa kodinhoidossa tai kodin ulkopuolissa asioinneissa, kuten kaupassa käynnissä ja siivouksessa?",
+      "type": "boolean",
+      "modifierExtension": [
+        {
+            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
+            "valueString":"QuestionnaireResponse.item.where(linkId='Q1_TARVITSETKO_HOITOA' and answer.exists()).exists()"
+        }
+      ],	  
+      "required": true
+    },
+    {
+      "linkId": "Q4_ONKO_SINULLA",
+      "text": "Onko sinulla omaista tai muuta läheistä, jolla on mahdollisuus vastata tarvitsemastasi hoidosta, huolenpidosta tai valvonnasta?",
+      "type": "boolean",
+      "modifierExtension": [
+        {
+            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
+            "valueString":"QuestionnaireResponse.item.where(linkId='Q3_TARVITSETKO_HOITOA' and answer.exists()).exists()"
+        }
+      ],
+      "required": true
+    }
+  ]
+}

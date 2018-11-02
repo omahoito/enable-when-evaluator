@@ -1,4 +1,4 @@
-package fi.oda.common.fhir.validation;
+package fi.oda.common.fhir.validation.utils;
 
 import static fi.oda.common.fhir.validation.QuestionnaireUtils.findSubItems;
 
@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 
 import org.hl7.fhir.dstu3.model.*;
 import org.hl7.fhir.dstu3.model.Questionnaire.QuestionnaireItemComponent;
+
+import fi.oda.common.fhir.validation.*;
 
 public class QuestionnaireEnableWhenEvaluator {
     private EnableWhenEvaluator enableWhenEvaluator;

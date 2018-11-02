@@ -1,0 +1,85 @@
+{
+  "resourceType": "QuestionnaireResponse",
+  "language": "fi",
+  "meta": {
+    "profile": [
+      "http://phr.kanta.fi/StructureDefinition/fiphr-sd-questionnaireresponse-stu3"
+    ]
+  },
+  "questionnaire": {
+    "reference": "Questionnaire/1136"
+  },
+  "text": {
+    "status": "generated",
+    "div": "<div>text</div>"
+  },
+  "status": "completed",
+  "subject": {
+    "reference": "Patient/123"
+  },
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "urn:uuid:1929fc1f-51e7-41b1-a112-a32a9a5811a2"
+    }
+  ],
+  "authored": "2018-09-04",
+  "source": {
+    "reference": "Patient/123"
+  },
+  "item": [
+    {
+      "linkId": "Q_JOHDANTO",
+      "text": "Vastaa kyselyyn hoitoa, huolenpitoa tai valvontaa tarvitsevan näkökulmasta. Vastaustesi perusteella saat sopivan toimintasuosituksen ja ohjauksen esimerkiksi järjestöjen palveluihin, julkisiin kaikille avoimiin palveluihin tai tiettyjen julkisten sosiaalipalvelujen hakemiseen. Huomioithan, että kysely on suuntaa antava, eikä päätös palvelun saamisesta."
+    },
+    {
+      "linkId": "Q_PAIJAT_HAMEEN_HYVINVOINTIKUNTAYHTYMA",
+      "text": "Päijät-Hämeen hyvinvointikuntayhtymään kuuluvat Asikkala, Hartola, Hollola, Iitti, Kärkölä, Lahti, Myrskylä, Orimattila, Padasjoki ja Pukkila."
+    },
+    {
+      "linkId": "Q_KUNTA",
+      "text": "Kotikuntasi tai sote-alueesi?",
+      "answer": [
+        {
+          "valueCoding": {
+            "id": "default",
+            "code": "default",
+            "system": "http://phr.kanta.fi/CodeSystem/fiphr-cs-option-omaishoidon-tuki-1-0",
+            "display": "Muu"
+          }
+        }
+      ]
+    },
+    {
+      "linkId": "Q1_TARVITSETKO_HOITOA",
+      "text": "Tarvitsetko hoitoa, huolenpitoa tai valvontaa henkilökohtaisissa toiminnoissa, kuten wc-toimissa, pukeutumisessa, peseytymisessä ja syömisessä?",
+      "answer": [
+        {
+          "valueBoolean": false
+        }
+      ]
+    },
+    {
+      "linkId": "Q2_TARVITSETKO_PAIVITTAISTA",
+      "text": "Tarvitsetko päivittäin hoitoa, huolenpitoa tai valvontaa joko yhtäjaksoisesti tai vähäisin keskeytyksin?"
+    },
+    {
+      "linkId": "Q3_TARVITSETKO_HOITOA",
+      "text": "Tarvitsetko hoitoa, huolenpitoa tai valvontaa kodinhoidossa tai kodin ulkopuolissa asioinneissa, kuten kaupassa käynnissä ja siivouksessa?",
+      "answer": [
+        {
+          "valueBoolean": false
+        }
+      ]
+    },
+    {
+      "linkId": "Q4_ONKO_SINULLA",
+      "text": "Onko sinulla omaista tai muuta läheistä, jolla on mahdollisuus vastata tarvitsemastasi hoidosta, huolenpidosta tai valvonnasta?",
+      "answer": [
+        {
+          "valueBoolean": false
+        }
+      ]
+    }
+  ]
+}

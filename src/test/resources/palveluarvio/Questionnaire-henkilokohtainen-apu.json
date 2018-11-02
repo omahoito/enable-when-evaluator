@@ -1,0 +1,146 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "12",
+  "meta": {
+    "profile": [
+      "http://phr.kanta.fi/StructureDefinition/fiphr-sd-questionnaire-stu3"
+    ],
+    "tag": [
+      {
+        "system": "http://oda.fi/Questionnaire",
+        "code": "symptom"
+      },
+      {
+        "system": "http://oda.fi/Questionnaire",
+        "code": "social-service-request"
+      },
+      {
+        "system": "http://oda.fi/cds",
+        "code": "oda-social"
+      }
+    ]
+  },
+  "language": "fi",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Arvio auttaa sinua selvittämään, onko sinulla tai läheiselläsi edellytyksiä hakea vammaispalvelulain mukaista henkilökohtaista apua. Vastaustesi perusteella saat toimintasuosituksen ja lisätietoja tilanteesi tueksi.</div>"
+  },
+  "url": "https://oda.fi/Forms/henkilokohtainen-apu/1/fi",
+  "code": [
+    {
+      "system": "http://phr.kanta.fi/CodeSystem/fiphr-cs-questionnairecode",
+      "code": "ODA-SOC-1"
+    }
+  ],
+  "identifier": [
+    {
+      "use": "official",
+      "system": "urn:ietf:rfc:3986",
+      "value": "urn:uuid:dbc83e1e-bf2a-40d7-a528-59b7f6d7ad71"
+    },
+    {
+      "system": "https://oda.fi/Forms",
+      "value": "henkilokohtainen-apu"
+    }
+  ],
+  "version": "1.0",
+  "name": "henkilokohtainen-apu",
+  "title": "Arvio henkilökohtaisesta avusta",
+  "status": "draft",
+  "date": "2018-09-14T00:00:00+03:00",
+  "publisher": "SoteDigi Oy",
+  "description": "Arvio henkilökohtaisesta avusta",
+  "purpose": "Kysely selvittää alustavasti onko kansalaisella oikeutta henkilökohtaiseen apuun",
+  "approvalDate": "2018-03-14",
+  "item": [
+    {
+      "linkId": "Q_JOHDANTO",
+      "text": "Vastaa kyselyyn oman tai läheisesi elämäntilanteen mukaisesti. Vastaustesi perusteella saat sopivan toimintasuosituksen ja ohjauksen esimerkiksi järjestöjen palveluihin, julkisiin kaikille avoimiin palveluihin tai tiettyjen julkisten sosiaalipalvelujen hakemiseen. Huomioithan, että kysely on suuntaa antava, eikä päätös palvelun saamisesta.",
+      "type": "display"
+    },
+    {
+      "linkId": "Q_KUNTA",
+      "text": "Kotikuntasi?",
+      "type": "choice",
+      "required": true,
+      "option": [
+        {
+          "valueCoding": {
+            "id": "564",
+            "code": "564",
+            "system": "http://phr.kanta.fi/CodeSystem/fiphr-cs-option-henkilokohtainen-apu-1-0",
+            "display": "Oulu"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "default",
+            "code": "default",
+            "system": "http://phr.kanta.fi/CodeSystem/fiphr-cs-option-henkilokohtainen-apu-1-0",
+            "display": "Muu"
+          }
+        }
+      ]
+    },
+    {
+      "linkId": "Q1_TARVITSETKO_TOISTUVASTI_APUA_KOTONA",
+      "text": "Tarvitsetko toistuvasti toisen ihmisen apua kotona tapahtuvissa päivittäisissä toiminnoissa?",
+      "type": "boolean",
+	  "modifierExtension": [
+        {
+            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
+            "valueString":"QuestionnaireResponse.item.where(linkId='Q_KUNTA' and answer.exists()).exists()"
+        }
+      ],	  
+      "required": true
+    },
+    {
+      "linkId": "Q2_TARVITSETKO_VALTTAMATTA_APUA_KODIN_ULKOPUOLELLA",
+      "text": "Tarvitsetko toistuvasti toisen ihmisen apua kodin ulkopuolella?",
+      "type": "boolean",
+      "modifierExtension": [
+        {
+            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
+            "valueString":"QuestionnaireResponse.item.where(linkId='Q_KUNTA' and answer.exists()).exists()"
+        }
+      ],
+      "required": true
+    },
+    {
+      "linkId": "Q3_JOHTUUKO_TARPEESI_IKAANTYMISEEN_LIITTYVISTA_SAIRAUKSISTA_JA_RAJOITTEISTA",
+      "text": "Johtuuko avun tarpeesi ikääntymiseen liittyvistä sairauksista tai toimintarajoitteista?",
+      "type": "boolean",
+      "modifierExtension": [
+        {
+            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
+            "valueString":"QuestionnaireResponse.item.where(linkId='Q1_TARVITSETKO_TOISTUVASTI_APUA_KOTONA' and answer.value=true).exists() and QuestionnaireResponse.item.where(linkId='Q2_TARVITSETKO_VALTTAMATTA_APUA_KODIN_ULKOPUOLELLA' and answer.value=true).exists()"
+        }
+      ],
+      "required": true
+    },
+    {
+      "linkId": "Q4_JOHTUUKO_TARPEESI_PITKAAIKAISESTA_TAI_ETENEVASTA_SAIRAUDESTA_TAI_VAMMASTA",
+      "text": "Johtuuko avun tarpeesi pitkäaikaisesta tai etenevästä sairaudesta tai vammasta?",
+      "type": "boolean",
+      "modifierExtension": [
+        {
+            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
+            "valueString":"QuestionnaireResponse.item.where(linkId='Q3_JOHTUUKO_TARPEESI_IKAANTYMISEEN_LIITTYVISTA_SAIRAUKSISTA_JA_RAJOITTEISTA' and answer.value=false).exists()"
+        }
+      ],	  
+      "required": true
+    },
+    {
+      "linkId": "Q5_OSAATKO_JA_PYSTYTKO_ITSE_MAARITTELEMAAN_TARVITSEMASI_AVUN_SISALLON_JA_TOTEUTTAMISTAVAN",
+      "text": "Osaatko ja pystytkö itse määrittelemään tarvitsemasi avun sisällön ja toteuttamistavan?",
+      "type": "boolean",
+      "modifierExtension": [
+        {
+            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
+            "valueString":"QuestionnaireResponse.item.where(linkId='Q4_JOHTUUKO_TARPEESI_PITKAAIKAISESTA_TAI_ETENEVASTA_SAIRAUDESTA_TAI_VAMMASTA' and answer.value=true).exists()"
+        }
+      ],
+      "required": true
+    }
+  ]
+}

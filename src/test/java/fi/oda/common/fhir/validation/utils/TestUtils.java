@@ -1,4 +1,4 @@
-package fi.oda.common.fhir.validation;
+package fi.oda.common.fhir.validation.utils;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
