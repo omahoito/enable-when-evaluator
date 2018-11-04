@@ -1,0 +1,103 @@
+{
+  "resourceType": "QuestionnaireResponse",
+  "language": "fi",
+  "meta": {
+    "profile": [
+      "http://phr.kanta.fi/StructureDefinition/fiphr-sd-questionnaireresponse-stu3"
+    ]
+  },
+  "questionnaire": {
+    "reference": "Questionnaire/11"
+  },
+  "text": {
+    "status": "generated",
+    "div": "<div>text</div>"
+  },
+  "authored": "2018-09-04",
+  "source": {
+    "reference": "Patient/123"
+  },
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "urn:uuid:4f6a5136-028c-457c-aeff-bdd984af197a"
+    }
+  ],
+  "status": "completed",
+  "subject": {
+    "reference": "Patient/123"
+  },
+  "item": [
+    {
+      "linkId": "Q_JOHDANTO",
+      "text": "Vastaa kyselyyn oman tai läheisesi elämäntilanteen mukaisesti. Vastaustesi perusteella saat sopivan toimintasuosituksen ja ohjauksen esimerkiksi järjestöjen palveluihin, julkisiin kaikille avoimiin palveluihin tai tiettyjen julkisten sosiaalipalvelujen hakemiseen. Huomioithan, että kysely on suuntaa antava, eikä päätös palvelun saamisesta."
+    },
+    {
+      "linkId": "Q_KUNTA",
+      "text": "Kotikuntasi?",
+      "answer": [
+        {
+          "valueCoding": {
+            "id": "default",
+            "code": "default",
+            "system": "http://phr.kanta.fi/CodeSystem/fiphr-cs-option-kuljetusapu-1-0",
+            "display": "Muu"
+          }
+        }
+      ]
+    },
+    {
+      "linkId": "Q1_ONKO_SINULLA_VAIKEUKSIA_LIIKKUMISESSA",
+      "text": "Onko sinulla vaikeuksia liikkua kodin ulkopuolella?",
+      "answer": [
+        {
+          "valueBoolean": false
+        }
+      ]
+    },
+    {
+      "linkId": "Q2_ONKO_KAYTOSSA_LIIKKUMISEN_APUVALINEITA",
+      "text": "Onko käytössäsi <span title=\"Liikkumisen apuvälineitä ovat kyynärsauvat ja kävelykepit, rollaattorit, manuaali - ja sähköpyörätuolit ja sähkömopot, apuvälineeksi luokiteltavat polkupyörät esimerkiksi potkupyörät, kolmi- ja nelipyöräiset polkupyörät ja käsin poljettavat polkupyörät.\">liikkumisen apuvälineitä</span>?"
+    },
+    {
+      "linkId": "Q3_TARVITSETKO_APUA_TERVEYDENHUOLTOMATKOIHIN",
+      "text": "Tarvitsetko apua <span title=\"Sosiaalihuolto- tai vammaispalvelulain mukaisia kuljetuspalveluja ei voi käyttää julkisen tai yksityisen terveydenhuollon tai kuntoutuksen käynteihin. Voit olla yhteydessä Kelaan terveydenhuollon tai kuntoutuksen matkoihin liittyen.\">terveydenhuollon matkoihin</span>?"
+    },
+    {
+      "linkId": "Q4_1_TARVITSETKO_APUA_TYO_TAI_OPISKELUMATKOIHIN",
+      "text": "Tarvitsetko apua työ- tai opiskelumatkoihin?"
+    },
+    {
+      "linkId": "Q4_2_TARVITSETKO_APUA_ASIOINTI_JA_VIRKISTYSMATKOIHIN",
+      "text": "Tarvitsetko apua asiointi- ja virkistysmatkoihin, yhteiskunnallisen osallistumiseen tai muihin vastaaviin matkoihin?"
+    },
+    {
+      "linkId": "Q5_PYSTYTKO_LIIKKUMAAN_ITSENAISESTI_JOUKKOLIIKENTEELLA",
+      "text": "Pystytkö liikkumaan itsenäisesti <span title=\"Julkinen linja-auto- ja junaliikenne on ensisijainen tapa järjestää kaikille soveltuva liikkuminen. Julkinen joukkoliikenne sisältää kutsu- ja palveluliikenteen.\">julkisella joukkoliikenteellä</span>?"
+    },
+    {
+      "linkId": "Q6_PYSTYTKO_LIIKKUMAAN_JOUKKO_PALVELU_LIIKENTEELLA_SAATTAJAN_AVULLA",
+      "text": "Pystytkö liikkumaan julkisella joukkoliikenteellä, jos sinulla on saattaja?"
+    },
+    {
+      "linkId": "Q7_JOHTUUKO_TARPEESI_IKAANTYMISESTA",
+      "text": "Onko liikkumiskykysi <span title=\"Henkilö, jonka fyysinen, kognitiivinen, psyykkinen tai sosiaalinen toimintakyky on heikentynyt korkean iän myötä alkaneiden, lisääntyneiden tai pahentuneiden sairauksien tai vammojen vuoksi taikka korkeaan ikään liittyvän rappeutumisen johdosta.\">heikentynyt ikääntymisen vuoksi</span>?"
+    },
+    {
+      "linkId": "Q9_JOHTUUKO_TARPEESI_PITKAAIKAISESTA_TAI_ETENEVASTA_SAIRAUDESTA_TAI_VAMMASTA",
+      "text": "Onko liikkumiskykysi heikentynyt <span title=\"Sellainen sairaus tai vamma, joka ei ole luonteeltaan ohimenevä, kuten esimerkiksi jalan murtuminen. Eteneviä sairauksia ovat esimerkiksi MS-tauti, eräät lihassairaudet ja ALS. \">pitkäaikaisen tai etenevän sairauden tai vamman</span> vuoksi?"
+    },
+    {
+      "linkId": "Q10_1_ASUTKO_AVO_TAI_AVIOPUOLISON_KANSSA",
+      "text": "Asutko yhteistaloudessa avo- tai aviopuolison kanssa?"
+    },
+    {
+      "linkId": "Q10_2_ONKO_BRUTTOTULONNE_ALLE",
+      "text": "Ovatko yhteiset bruttotulonne alle 2270€/kk?"
+    },
+    {
+      "linkId": "Q10_3_ONKO_BRUTTOTULOSI_ALLE",
+      "text": "Onko bruttotulosi alle 1406€/kk?"
+    }
+  ]
+}

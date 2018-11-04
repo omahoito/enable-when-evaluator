@@ -1,13 +1,12 @@
 package fi.oda.common.fhir.validation;
 
-import static fi.oda.common.fhir.validation.QuestionnaireUtils.findSubItems;
-
+import static fi.oda.common.fhir.validation.QuestionnaireUtils.*;
 import java.util.*;
 import java.util.stream.Collectors;
-
-import org.hl7.fhir.dstu3.model.*;
-import org.hl7.fhir.dstu3.model.Questionnaire.*;
-import org.hl7.fhir.dstu3.model.QuestionnaireResponse.*;
+import org.hl7.fhir.exceptions.FHIRException;
+import org.hl7.fhir.r4.elementmodel.Element;
+import org.hl7.fhir.r4.model.*;
+import org.hl7.fhir.r4.model.Questionnaire.*;
 /**
  * Evaluates Questionnaire.item.enableWhen against a QuestionnaireResponse.
  * Ignores possible modifierExtensions and extensions.
@@ -17,75 +16,76 @@ public class DefaultEnableWhenEvaluator implements EnableWhenEvaluator {
 
     @Override
     public boolean isEnabled(QuestionnaireItemComponent questionnaireItem,
-            QuestionnaireResponse questionnaireResponse) {
+            Element questionnaireResponse) {
         if (!questionnaireItem.hasEnableWhen()) {
             return true;
         }
+
         List<EnableWhenResult> evaluationResults = questionnaireItem.getEnableWhen()
                 .stream()
                 .map(enableCondition -> evaluateCondition(enableCondition, questionnaireResponse,
                         questionnaireItem.getLinkId()))
                 .collect(Collectors.toList());
+        return checkConditionEvaluationResults(evaluationResults, questionnaireItem);
+    }
+   
+    
+    private boolean checkConditionEvaluationResults(List<EnableWhenResult> evaluationResults,
+            QuestionnaireItemComponent questionnaireItem) {
         return evaluationResults.stream().anyMatch(EnableWhenResult::isEnabled);
     }
 
+
     public EnableWhenResult evaluateCondition(QuestionnaireItemEnableWhenComponent enableCondition,
-            QuestionnaireResponse questionnaireResponse, String linkId) {
-        //Find the answer from the QuestionnaireResponse 
-        QuestionnaireResponseItemComponent targetItem = findTargetQuestionAnswer(questionnaireResponse,
-                enableCondition.getQuestion()).orElseThrow(
-                        () -> new RuntimeException("EnableWhen condition refers to a non-existing Questionnaire.item"));
-        
-        if (enableCondition.hasHasAnswer() && enableCondition.hasAnswer()) {
-            throw new RuntimeException("Expected: hasAnswer or answer, but not both. Found both.");
-        }
-        if (enableCondition.hasHasAnswer()) {
-            if (enableCondition.getHasAnswer() == targetItem.hasAnswer()) {
-                return new EnableWhenResult(true, linkId, enableCondition, targetItem);
-            }
-            return new EnableWhenResult(false, linkId, enableCondition, targetItem);
-        }
+            Element questionnaireResponse, String linkId) {
+        //TODO: Fix EnableWhenResult stuff
+        List<Element> answerItems = findQuestionAnswers(questionnaireResponse,
+                enableCondition.getQuestion());   
         if (enableCondition.hasAnswer()) {
-            boolean evaluationResult = targetItem.getAnswer().stream()
-                    .anyMatch(answer -> evaluateAnswer(enableCondition.getAnswer(), answer, linkId));
-            return new EnableWhenResult(evaluationResult, linkId, enableCondition, targetItem);
+            boolean result = answerItems.stream().anyMatch(answer -> evaluateAnswer(answer, enableCondition.getAnswer()));
+            
+            return new EnableWhenResult(result, linkId, null, null);
 
         }
-        return new EnableWhenResult(false, linkId, enableCondition, targetItem);
+        return new EnableWhenResult(false, linkId, null, null);        
     }
 
-    private Optional<QuestionnaireResponseItemComponent> findTargetQuestionAnswer(
-            QuestionnaireResponse questionnaireResponse, String question) {
-        return questionnaireResponse.getItem().stream()
-                .flatMap(item -> findSubItems(item, QuestionnaireUtils::getQuestionnaireResponseItemChildren).stream())
-                .filter(item -> item.getLinkId().equals(question)).findFirst();
-    }
-
-    private boolean evaluateAnswer(Type expectedAnswer, QuestionnaireResponseItemAnswerComponent actualAnswer,
-            String questionLinkId) {
+    private boolean evaluateAnswer(Element answer, Type expectedAnswer) {
+        org.hl7.fhir.r4.model.Type actualAnswer;
+        try {
+            actualAnswer = answer.asType();
+        } catch (FHIRException e) {
+            throw new RuntimeException(e);
+        }
+        if (!actualAnswer.getClass().isAssignableFrom(expectedAnswer.getClass())) {
+            throw new RuntimeException("Expected answer and actual answer have incompatible types");
+        }
         if (expectedAnswer instanceof Coding) {
-            return validateCodingAnswer((Coding) expectedAnswer, actualAnswer, questionLinkId);
-        } else if (expectedAnswer instanceof PrimitiveType) {
-            if (!actualAnswer.getValue().getClass().isAssignableFrom(expectedAnswer.getClass())) {
-                throw new RuntimeException("Expected answer and actual answer have incompatible types");
-            }
-            return actualAnswer.getValue().equalsShallow(expectedAnswer);
+            return validateCodingAnswer((Coding)expectedAnswer, (Coding)actualAnswer);
+        } else if (expectedAnswer instanceof PrimitiveType) {           
+            return actualAnswer.equalsShallow(expectedAnswer);
         }
         // TODO: Quantity, Attachment, reference?
         throw new RuntimeException("Unimplemented answer type: " + expectedAnswer.getClass());
     }
 
-    private boolean validateCodingAnswer(Coding expectedAnswer, QuestionnaireResponseItemAnswerComponent actualAnswer,
-            String questionLinkId) {
-        Coding expectedCoding = (Coding) expectedAnswer;
-        if (!(actualAnswer.getValue() instanceof Coding)) {
-            throw new RuntimeException("Could not evaluate enableWhen. Expected Coding for answer");
-        }
-        return compareCodings(expectedCoding, (Coding) actualAnswer.getValue());
+    private List<Element> findQuestionAnswers(
+            Element questionnaireResponse, String question) {
+        List<Element> matchingItems = questionnaireResponse.getChildren("item")
+                .stream()
+                .flatMap(i -> findSubItems(i).stream())
+                .filter(i -> hasLinkId(i, question))
+                .collect(Collectors.toList());        
+        return matchingItems.stream().flatMap(e-> extractAnswer(e).stream()).collect(Collectors.toList());
+        
+    }
+    
+    private List<Element> extractAnswer(Element item) {
+        return item.getChildrenByName("answer").stream().flatMap(c -> c.getChildren().stream()).collect(Collectors.toList());
     }
 
-    private boolean compareCodings(Coding expectedCoding, Coding value) {
-        return compareSystems(expectedCoding, value) && compareCodes(expectedCoding, value);
+    private boolean validateCodingAnswer(Coding expectedAnswer, Coding actualAnswer) {
+        return compareSystems(expectedAnswer, actualAnswer) && compareCodes(expectedAnswer, actualAnswer);
     }
 
     private boolean compareCodes(Coding expectedCoding, Coding value) {

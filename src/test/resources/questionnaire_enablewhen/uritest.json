@@ -15,7 +15,7 @@
             "enableWhen": [
                 {
                     "question":"Q_MAIN",
-                    "answerUri": "http://someuri"
+                    "answerUrl": "http://someuri"
                 }
             ],            
             "required": true

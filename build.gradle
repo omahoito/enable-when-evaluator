@@ -27,8 +27,10 @@ dependencies {
     compile("ca.uhn.hapi.fhir:hapi-fhir-base:${hapiVersion}")
     compile("ca.uhn.hapi.fhir:hapi-fhir-structures-dstu3:${hapiVersion}")
     
-    compile("ca.uhn.hapi.fhir:hapi-fhir-validation-resources-dstu3:${hapiVersion}")  
+    compile("ca.uhn.hapi.fhir:hapi-fhir-validation-resources-dstu3:${hapiVersion}")
+    compile("ca.uhn.hapi.fhir:hapi-fhir-validation-resources-r4:${hapiVersion}")  
     compile("ca.uhn.hapi.fhir:hapi-fhir-validation:${hapiVersion}")
+    compile("ca.uhn.hapi.fhir:hapi-fhir-structures-r4:${hapiVersion}")
     
     testCompile('junit:junit:4.12')
     testCompile('org.exparity:hamcrest-date:2.0.4')
