@@ -25,7 +25,7 @@
     "status": "generated",
     "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Arvio auttaa sinua selvittämään, onko sinulla tai läheiselläsi edellytyksiä hakea omaishoidon tukea. Vastaustesi perusteella saat toimintasuosituksen ja lisätietoja tilanteesi tueksi.</div>"
   },
-  "url": "https://oda.fi/Forms/omaishoidon/123/fi",
+  "url": "https://oda.fi/Forms/omaishoidon-tuki/1/fi",
   "code": [
     {
       "system": "http://phr.kanta.fi/CodeSystem/fiphr-cs-questionnairecode",
