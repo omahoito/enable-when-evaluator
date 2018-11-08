@@ -109,10 +109,10 @@
       "type": "boolean",
       "modifierExtension": [
         {
-            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
-            "valueString":"QuestionnaireResponse.item.where(linkId='Q_KUNTA' and answer.exists()).exists()"
+          "url": "http://phr.kanta.fi/StructureDefinition/fiphr-ext-questionnaire-enablewhen",
+          "valueString": "QuestionnaireResponse.item.where(linkId='Q_KUNTA' and answer.exists()).exists()"
         }
-      ],		  
+      ],
       "required": true
     },
     {
@@ -121,10 +121,10 @@
       "type": "boolean",
       "modifierExtension": [
         {
-            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
-            "valueString":"QuestionnaireResponse.item.where(linkId='Q1_TARVITSETKO_HOITOA' and answer.value=true).exists()"
+          "url": "http://phr.kanta.fi/StructureDefinition/fiphr-ext-questionnaire-enablewhen",
+          "valueString": "QuestionnaireResponse.item.where(linkId='Q1_TARVITSETKO_HOITOA' and answer.value=true).exists()"
         }
-      ],	  
+      ],
       "enableWhen": [
         {
           "question": "Q1_TARVITSETKO_HOITOA",
@@ -139,10 +139,10 @@
       "type": "boolean",
       "modifierExtension": [
         {
-            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
-            "valueString":"QuestionnaireResponse.item.where(linkId='Q1_TARVITSETKO_HOITOA' and answer.exists()).exists()"
+          "url": "http://phr.kanta.fi/StructureDefinition/fiphr-ext-questionnaire-enablewhen",
+          "valueString": "QuestionnaireResponse.item.where(linkId='Q1_TARVITSETKO_HOITOA' and answer.exists()).exists()"
         }
-      ],	  
+      ],
       "required": true
     },
     {
@@ -151,8 +151,8 @@
       "type": "boolean",
       "modifierExtension": [
         {
-            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
-            "valueString":"QuestionnaireResponse.item.where(linkId='Q3_TARVITSETKO_HOITOA' and answer.exists()).exists()"
+          "url": "http://phr.kanta.fi/StructureDefinition/fiphr-ext-questionnaire-enablewhen",
+          "valueString": "QuestionnaireResponse.item.where(linkId='Q3_TARVITSETKO_HOITOA' and answer.exists()).exists()"
         }
       ],
       "required": true

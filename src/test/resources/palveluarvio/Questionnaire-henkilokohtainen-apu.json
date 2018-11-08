@@ -86,12 +86,12 @@
       "linkId": "Q1_TARVITSETKO_TOISTUVASTI_APUA_KOTONA",
       "text": "Tarvitsetko toistuvasti toisen ihmisen apua kotona tapahtuvissa päivittäisissä toiminnoissa?",
       "type": "boolean",
-	  "modifierExtension": [
+      "modifierExtension": [
         {
-            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
-            "valueString":"QuestionnaireResponse.item.where(linkId='Q_KUNTA' and answer.exists()).exists()"
+          "url": "http://phr.kanta.fi/StructureDefinition/fiphr-ext-questionnaire-enablewhen",
+          "valueString": "QuestionnaireResponse.item.where(linkId='Q_KUNTA' and answer.exists()).exists()"
         }
-      ],	  
+      ],
       "required": true
     },
     {
@@ -100,8 +100,8 @@
       "type": "boolean",
       "modifierExtension": [
         {
-            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
-            "valueString":"QuestionnaireResponse.item.where(linkId='Q_KUNTA' and answer.exists()).exists()"
+          "url": "http://phr.kanta.fi/StructureDefinition/fiphr-ext-questionnaire-enablewhen",
+          "valueString": "QuestionnaireResponse.item.where(linkId='Q_KUNTA' and answer.exists()).exists()"
         }
       ],
       "required": true
@@ -112,8 +112,8 @@
       "type": "boolean",
       "modifierExtension": [
         {
-            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
-            "valueString":"QuestionnaireResponse.item.where(linkId='Q1_TARVITSETKO_TOISTUVASTI_APUA_KOTONA' and answer.value=true).exists() and QuestionnaireResponse.item.where(linkId='Q2_TARVITSETKO_VALTTAMATTA_APUA_KODIN_ULKOPUOLELLA' and answer.value=true).exists()"
+          "url": "http://phr.kanta.fi/StructureDefinition/fiphr-ext-questionnaire-enablewhen",
+          "valueString": "QuestionnaireResponse.item.where(linkId='Q1_TARVITSETKO_TOISTUVASTI_APUA_KOTONA' and answer.value=true).exists() and QuestionnaireResponse.item.where(linkId='Q2_TARVITSETKO_VALTTAMATTA_APUA_KODIN_ULKOPUOLELLA' and answer.value=true).exists()"
         }
       ],
       "required": true
@@ -124,10 +124,10 @@
       "type": "boolean",
       "modifierExtension": [
         {
-            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
-            "valueString":"QuestionnaireResponse.item.where(linkId='Q3_JOHTUUKO_TARPEESI_IKAANTYMISEEN_LIITTYVISTA_SAIRAUKSISTA_JA_RAJOITTEISTA' and answer.value=false).exists()"
+          "url": "http://phr.kanta.fi/StructureDefinition/fiphr-ext-questionnaire-enablewhen",
+          "valueString": "QuestionnaireResponse.item.where(linkId='Q3_JOHTUUKO_TARPEESI_IKAANTYMISEEN_LIITTYVISTA_SAIRAUKSISTA_JA_RAJOITTEISTA' and answer.value=false).exists()"
         }
-      ],	  
+      ],
       "required": true
     },
     {
@@ -136,8 +136,8 @@
       "type": "boolean",
       "modifierExtension": [
         {
-            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
-            "valueString":"QuestionnaireResponse.item.where(linkId='Q4_JOHTUUKO_TARPEESI_PITKAAIKAISESTA_TAI_ETENEVASTA_SAIRAUDESTA_TAI_VAMMASTA' and answer.value=true).exists()"
+          "url": "http://phr.kanta.fi/StructureDefinition/fiphr-ext-questionnaire-enablewhen",
+          "valueString": "QuestionnaireResponse.item.where(linkId='Q4_JOHTUUKO_TARPEESI_PITKAAIKAISESTA_TAI_ETENEVASTA_SAIRAUDESTA_TAI_VAMMASTA' and answer.value=true).exists()"
         }
       ],
       "required": true

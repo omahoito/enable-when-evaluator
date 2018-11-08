@@ -96,8 +96,8 @@
       "type": "boolean",
       "modifierExtension": [
         {
-            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
-            "valueString":"QuestionnaireResponse.item.where(linkId='Q_KUNTA' and answer.exists()).exists()"
+          "url": "http://phr.kanta.fi/StructureDefinition/fiphr-ext-questionnaire-enablewhen",
+          "valueString": "QuestionnaireResponse.item.where(linkId='Q_KUNTA' and answer.exists()).exists()"
         }
       ],
       "required": true
@@ -108,8 +108,8 @@
       "type": "boolean",
       "modifierExtension": [
         {
-            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
-            "valueString":"QuestionnaireResponse.item.where(linkId='Q1_ONKO_SINULLA_VAIKEUKSIA_LIIKKUMISESSA' and answer.value=true).exists()"
+          "url": "http://phr.kanta.fi/StructureDefinition/fiphr-ext-questionnaire-enablewhen",
+          "valueString": "QuestionnaireResponse.item.where(linkId='Q1_ONKO_SINULLA_VAIKEUKSIA_LIIKKUMISESSA' and answer.value=true).exists()"
         }
       ],
       "required": true
@@ -120,8 +120,8 @@
       "type": "boolean",
       "modifierExtension": [
         {
-            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
-            "valueString":"QuestionnaireResponse.item.where(linkId='Q2_ONKO_KAYTOSSA_LIIKKUMISEN_APUVALINEITA' and answer.exists()).exists()"
+          "url": "http://phr.kanta.fi/StructureDefinition/fiphr-ext-questionnaire-enablewhen",
+          "valueString": "QuestionnaireResponse.item.where(linkId='Q2_ONKO_KAYTOSSA_LIIKKUMISEN_APUVALINEITA' and answer.exists()).exists()"
         }
       ],
       "required": true
@@ -132,8 +132,8 @@
       "type": "boolean",
       "modifierExtension": [
         {
-            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
-            "valueString":"QuestionnaireResponse.item.where(linkId='Q3_TARVITSETKO_APUA_TERVEYDENHUOLTOMATKOIHIN' and answer.exists()).exists()"
+          "url": "http://phr.kanta.fi/StructureDefinition/fiphr-ext-questionnaire-enablewhen",
+          "valueString": "QuestionnaireResponse.item.where(linkId='Q3_TARVITSETKO_APUA_TERVEYDENHUOLTOMATKOIHIN' and answer.exists()).exists()"
         }
       ],
       "required": true
@@ -144,10 +144,10 @@
       "type": "boolean",
       "modifierExtension": [
         {
-            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
-            "valueString":"QuestionnaireResponse.item.where(linkId='Q4_1_TARVITSETKO_APUA_TYO_TAI_OPISKELUMATKOIHIN' and answer.exists()).exists()"
+          "url": "http://phr.kanta.fi/StructureDefinition/fiphr-ext-questionnaire-enablewhen",
+          "valueString": "QuestionnaireResponse.item.where(linkId='Q4_1_TARVITSETKO_APUA_TYO_TAI_OPISKELUMATKOIHIN' and answer.exists()).exists()"
         }
-      ],      
+      ],
       "required": true
     },
     {
@@ -156,10 +156,10 @@
       "type": "boolean",
       "modifierExtension": [
         {
-            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
-            "valueString":"QuestionnaireResponse.item.where(linkId='Q4_1_TARVITSETKO_APUA_TYO_TAI_OPISKELUMATKOIHIN' and answer.value=true).exists() and QuestionnaireResponse.item.where(linkId='Q4_2_TARVITSETKO_APUA_ASIOINTI_JA_VIRKISTYSMATKOIHIN' and answer.value=true).exists()"
+          "url": "http://phr.kanta.fi/StructureDefinition/fiphr-ext-questionnaire-enablewhen",
+          "valueString": "QuestionnaireResponse.item.where(linkId='Q4_1_TARVITSETKO_APUA_TYO_TAI_OPISKELUMATKOIHIN' and answer.value=true).exists() and QuestionnaireResponse.item.where(linkId='Q4_2_TARVITSETKO_APUA_ASIOINTI_JA_VIRKISTYSMATKOIHIN' and answer.value=true).exists()"
         }
-      ],      
+      ],
       "required": true
     },
     {
@@ -168,8 +168,8 @@
       "type": "boolean",
       "modifierExtension": [
         {
-            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
-            "valueString":"QuestionnaireResponse.item.where(linkId='Q5_PYSTYTKO_LIIKKUMAAN_ITSENAISESTI_JOUKKOLIIKENTEELLA' and answer.value=false).exists()"
+          "url": "http://phr.kanta.fi/StructureDefinition/fiphr-ext-questionnaire-enablewhen",
+          "valueString": "QuestionnaireResponse.item.where(linkId='Q5_PYSTYTKO_LIIKKUMAAN_ITSENAISESTI_JOUKKOLIIKENTEELLA' and answer.value=false).exists()"
         }
       ],
       "required": true
@@ -180,10 +180,10 @@
       "type": "boolean",
       "modifierExtension": [
         {
-            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
-            "valueString":"QuestionnaireResponse.item.where(linkId='Q6_PYSTYTKO_LIIKKUMAAN_JOUKKO_PALVELU_LIIKENTEELLA_SAATTAJAN_AVULLA' and answer.exists()).exists()"
+          "url": "http://phr.kanta.fi/StructureDefinition/fiphr-ext-questionnaire-enablewhen",
+          "valueString": "QuestionnaireResponse.item.where(linkId='Q6_PYSTYTKO_LIIKKUMAAN_JOUKKO_PALVELU_LIIKENTEELLA_SAATTAJAN_AVULLA' and answer.exists()).exists()"
         }
-      ],      
+      ],
       "required": true
     },
     {
@@ -192,10 +192,10 @@
       "type": "boolean",
       "modifierExtension": [
         {
-            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
-            "valueString":"QuestionnaireResponse.item.where(linkId='Q7_JOHTUUKO_TARPEESI_IKAANTYMISESTA' and answer.exists()).exists()"
+          "url": "http://phr.kanta.fi/StructureDefinition/fiphr-ext-questionnaire-enablewhen",
+          "valueString": "QuestionnaireResponse.item.where(linkId='Q7_JOHTUUKO_TARPEESI_IKAANTYMISESTA' and answer.exists()).exists()"
         }
-      ],      
+      ],
       "required": true
     },
     {
@@ -204,8 +204,8 @@
       "type": "boolean",
       "modifierExtension": [
         {
-            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
-            "valueString":"QuestionnaireResponse.item.where(linkId='Q_KUNTA' and answer.value.code='564').exists() and QuestionnaireResponse.item.where(linkId='Q7_JOHTUUKO_TARPEESI_IKAANTYMISESTA' and answer.value=true).exists() and QuestionnaireResponse.item.where(linkId='Q9_JOHTUUKO_TARPEESI_PITKAAIKAISESTA_TAI_ETENEVASTA_SAIRAUDESTA_TAI_VAMMASTA' and answer.value=false).exists()"
+          "url": "http://phr.kanta.fi/StructureDefinition/fiphr-ext-questionnaire-enablewhen",
+          "valueString": "QuestionnaireResponse.item.where(linkId='Q_KUNTA' and answer.value.code='564').exists() and QuestionnaireResponse.item.where(linkId='Q7_JOHTUUKO_TARPEESI_IKAANTYMISESTA' and answer.value=true).exists() and QuestionnaireResponse.item.where(linkId='Q9_JOHTUUKO_TARPEESI_PITKAAIKAISESTA_TAI_ETENEVASTA_SAIRAUDESTA_TAI_VAMMASTA' and answer.value=false).exists()"
         }
       ],
       "required": true
@@ -216,8 +216,8 @@
       "type": "boolean",
       "modifierExtension": [
         {
-            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
-            "valueString":"QuestionnaireResponse.item.where(linkId='Q_KUNTA' and answer.value.code='564').exists() and QuestionnaireResponse.item.where(linkId='Q10_1_ASUTKO_AVO_TAI_AVIOPUOLISON_KANSSA' and answer.value=true).exists()"
+          "url": "http://phr.kanta.fi/StructureDefinition/fiphr-ext-questionnaire-enablewhen",
+          "valueString": "QuestionnaireResponse.item.where(linkId='Q_KUNTA' and answer.value.code='564').exists() and QuestionnaireResponse.item.where(linkId='Q10_1_ASUTKO_AVO_TAI_AVIOPUOLISON_KANSSA' and answer.value=true).exists()"
         }
       ],
       "required": true
@@ -228,8 +228,8 @@
       "type": "boolean",
       "modifierExtension": [
         {
-            "url":"http://hl7.org/fhir/StructureDefinition/questionnaire-enablewhen",
-            "valueString":"QuestionnaireResponse.item.where(linkId='Q_KUNTA' and answer.value.code='564').exists() and QuestionnaireResponse.item.where(linkId='Q10_1_ASUTKO_AVO_TAI_AVIOPUOLISON_KANSSA' and answer.value=false).exists()"
+          "url": "http://phr.kanta.fi/StructureDefinition/fiphr-ext-questionnaire-enablewhen",
+          "valueString": "QuestionnaireResponse.item.where(linkId='Q_KUNTA' and answer.value.code='564').exists() and QuestionnaireResponse.item.where(linkId='Q10_1_ASUTKO_AVO_TAI_AVIOPUOLISON_KANSSA' and answer.value=false).exists()"
         }
       ],
       "required": true
