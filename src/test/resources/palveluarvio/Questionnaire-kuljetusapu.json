@@ -109,7 +109,7 @@
       "modifierExtension": [
         {
           "url": "http://phr.kanta.fi/StructureDefinition/fiphr-ext-questionnaire-enablewhen",
-          "valueString": "QuestionnaireResponse.item.where(linkId='Q1_ONKO_SINULLA_VAIKEUKSIA_LIIKKUMISESSA' and answer.value=true).exists()"
+          "valueString": "QuestionnaireResponse.item.where(linkId='Q1_ONKO_SINULLA_VAIKEUKSIA_LIIKKUMISESSA' and answer.valueBoolean=true).exists()"
         }
       ],
       "required": true
@@ -157,7 +157,7 @@
       "modifierExtension": [
         {
           "url": "http://phr.kanta.fi/StructureDefinition/fiphr-ext-questionnaire-enablewhen",
-          "valueString": "QuestionnaireResponse.item.where(linkId='Q4_1_TARVITSETKO_APUA_TYO_TAI_OPISKELUMATKOIHIN' and answer.value=true).exists() and QuestionnaireResponse.item.where(linkId='Q4_2_TARVITSETKO_APUA_ASIOINTI_JA_VIRKISTYSMATKOIHIN' and answer.value=true).exists()"
+          "valueString": "QuestionnaireResponse.item.where(linkId='Q4_1_TARVITSETKO_APUA_TYO_TAI_OPISKELUMATKOIHIN' and answer.valueBoolean=true).exists() and QuestionnaireResponse.item.where(linkId='Q4_2_TARVITSETKO_APUA_ASIOINTI_JA_VIRKISTYSMATKOIHIN' and answer.valueBoolean=true).exists()"
         }
       ],
       "required": true
@@ -169,7 +169,7 @@
       "modifierExtension": [
         {
           "url": "http://phr.kanta.fi/StructureDefinition/fiphr-ext-questionnaire-enablewhen",
-          "valueString": "QuestionnaireResponse.item.where(linkId='Q5_PYSTYTKO_LIIKKUMAAN_ITSENAISESTI_JOUKKOLIIKENTEELLA' and answer.value=false).exists()"
+          "valueString": "QuestionnaireResponse.item.where(linkId='Q5_PYSTYTKO_LIIKKUMAAN_ITSENAISESTI_JOUKKOLIIKENTEELLA' and answer.valueBoolean=false).exists()"
         }
       ],
       "required": true
@@ -205,7 +205,7 @@
       "modifierExtension": [
         {
           "url": "http://phr.kanta.fi/StructureDefinition/fiphr-ext-questionnaire-enablewhen",
-          "valueString": "QuestionnaireResponse.item.where(linkId='Q_KUNTA' and answer.value.code='564').exists() and QuestionnaireResponse.item.where(linkId='Q7_JOHTUUKO_TARPEESI_IKAANTYMISESTA' and answer.value=true).exists() and QuestionnaireResponse.item.where(linkId='Q9_JOHTUUKO_TARPEESI_PITKAAIKAISESTA_TAI_ETENEVASTA_SAIRAUDESTA_TAI_VAMMASTA' and answer.value=false).exists()"
+          "valueString": "QuestionnaireResponse.item.where(linkId='Q_KUNTA' and answer.valueCoding.code='564').exists() and QuestionnaireResponse.item.where(linkId='Q7_JOHTUUKO_TARPEESI_IKAANTYMISESTA' and answer.valueBoolean=true).exists() and QuestionnaireResponse.item.where(linkId='Q9_JOHTUUKO_TARPEESI_PITKAAIKAISESTA_TAI_ETENEVASTA_SAIRAUDESTA_TAI_VAMMASTA' and answer.valueBoolean=false).exists()"
         }
       ],
       "required": true
@@ -217,7 +217,7 @@
       "modifierExtension": [
         {
           "url": "http://phr.kanta.fi/StructureDefinition/fiphr-ext-questionnaire-enablewhen",
-          "valueString": "QuestionnaireResponse.item.where(linkId='Q_KUNTA' and answer.value.code='564').exists() and QuestionnaireResponse.item.where(linkId='Q10_1_ASUTKO_AVO_TAI_AVIOPUOLISON_KANSSA' and answer.value=true).exists()"
+          "valueString": "QuestionnaireResponse.item.where(linkId='Q_KUNTA' and answer.valueCoding.code='564').exists() and QuestionnaireResponse.item.where(linkId='Q10_1_ASUTKO_AVO_TAI_AVIOPUOLISON_KANSSA' and answer.valueBoolean=true).exists()"
         }
       ],
       "required": true
@@ -229,7 +229,7 @@
       "modifierExtension": [
         {
           "url": "http://phr.kanta.fi/StructureDefinition/fiphr-ext-questionnaire-enablewhen",
-          "valueString": "QuestionnaireResponse.item.where(linkId='Q_KUNTA' and answer.value.code='564').exists() and QuestionnaireResponse.item.where(linkId='Q10_1_ASUTKO_AVO_TAI_AVIOPUOLISON_KANSSA' and answer.value=false).exists()"
+          "valueString": "QuestionnaireResponse.item.where(linkId='Q_KUNTA' and answer.valueCoding.code='564').exists() and QuestionnaireResponse.item.where(linkId='Q10_1_ASUTKO_AVO_TAI_AVIOPUOLISON_KANSSA' and answer.valueBoolean=false).exists()"
         }
       ],
       "required": true

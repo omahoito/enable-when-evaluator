@@ -113,7 +113,7 @@
       "modifierExtension": [
         {
           "url": "http://phr.kanta.fi/StructureDefinition/fiphr-ext-questionnaire-enablewhen",
-          "valueString": "QuestionnaireResponse.item.where(linkId='Q1_TARVITSETKO_TOISTUVASTI_APUA_KOTONA' and answer.value=true).exists() and QuestionnaireResponse.item.where(linkId='Q2_TARVITSETKO_VALTTAMATTA_APUA_KODIN_ULKOPUOLELLA' and answer.value=true).exists()"
+          "valueString": "QuestionnaireResponse.item.where(linkId='Q1_TARVITSETKO_TOISTUVASTI_APUA_KOTONA' and answer.valueBoolean=true).exists() and QuestionnaireResponse.item.where(linkId='Q2_TARVITSETKO_VALTTAMATTA_APUA_KODIN_ULKOPUOLELLA' and answer.valueBoolean=true).exists()"
         }
       ],
       "required": true
@@ -125,7 +125,7 @@
       "modifierExtension": [
         {
           "url": "http://phr.kanta.fi/StructureDefinition/fiphr-ext-questionnaire-enablewhen",
-          "valueString": "QuestionnaireResponse.item.where(linkId='Q3_JOHTUUKO_TARPEESI_IKAANTYMISEEN_LIITTYVISTA_SAIRAUKSISTA_JA_RAJOITTEISTA' and answer.value=false).exists()"
+          "valueString": "QuestionnaireResponse.item.where(linkId='Q3_JOHTUUKO_TARPEESI_IKAANTYMISEEN_LIITTYVISTA_SAIRAUKSISTA_JA_RAJOITTEISTA' and answer.valueBoolean=false).exists()"
         }
       ],
       "required": true
@@ -137,7 +137,7 @@
       "modifierExtension": [
         {
           "url": "http://phr.kanta.fi/StructureDefinition/fiphr-ext-questionnaire-enablewhen",
-          "valueString": "QuestionnaireResponse.item.where(linkId='Q4_JOHTUUKO_TARPEESI_PITKAAIKAISESTA_TAI_ETENEVASTA_SAIRAUDESTA_TAI_VAMMASTA' and answer.value=true).exists()"
+          "valueString": "QuestionnaireResponse.item.where(linkId='Q4_JOHTUUKO_TARPEESI_PITKAAIKAISESTA_TAI_ETENEVASTA_SAIRAUDESTA_TAI_VAMMASTA' and answer.valueBoolean=true).exists()"
         }
       ],
       "required": true
